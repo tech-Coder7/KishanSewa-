@@ -28,7 +28,7 @@
                 <div class="feature-card text-center">
                     <img src="image/crop.jpg" alt="Crop" class="feature-icon">
                     <h5>Crop Information</h5>
-                    <p>Know about best crops and cultivation methods.</p>
+                    <p>Know about best crops and cultivation methods....</p>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-6">
