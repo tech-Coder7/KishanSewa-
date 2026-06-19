@@ -22,7 +22,19 @@ class HomeController extends Controller
   public function home(){
     return view('home');
   }
-  public function login(){
-    return view('login');
+  public function registration(){
+    return view('registration');
   }
-}
+  public function schame(){
+    return view('schame');
+  }
+
+  public function contact(){
+  return view('contact');
+  }
+
+  public function crop(){
+  return view('crop');
+  }
+ 
+  }

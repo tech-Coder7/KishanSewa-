@@ -43,11 +43,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="schemes.html">Schemes</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">Contact</a>
                 </li>
@@ -55,8 +50,8 @@
                     <a  class="nav-link" href="language.html">Language</a>
                 </li>
             </ul>
-            <a href="/login" class="btn btn-success px-4">
-                Login
+            <a href="/registration" class="btn btn-success px-4">
+                Registration
             </a>
         </div>
     </div>

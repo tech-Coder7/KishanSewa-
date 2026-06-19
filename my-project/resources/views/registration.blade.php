@@ -206,8 +206,8 @@
                         </div>
 
                         <div class="col-12 text-center mt-3">
-                            <p class="text-muted small mb-0">Pehle se account hai? <a href="login.html"
-                                    class="login-link">Yahan Login Karein</a></p>
+                            <p class="text-muted small mb-0">Pehle se account hai? <a href="/login"
+                                    class="login-link">Login</a></p>
                         </div>
 
                     </div>
