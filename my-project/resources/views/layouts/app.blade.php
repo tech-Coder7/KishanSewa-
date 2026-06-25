@@ -19,7 +19,7 @@
 <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
     <a class="navbar-brand" href="#" style="color: #f9e7b3; font-size: 1.9rem; font-weight: 600;">
-      KishanSewa <span style="color: #f9b81b; font-size: 0.9rem; background: #2a4d3a; padding: 0.2rem 0.8rem; border-radius: 30px;">Smart Ag</span>
+      KishanSewa <span style="color: #f9b81b; font-size: 0.9rem; background: #CBBAB3; padding: 0.2rem 0.8rem; border-radius: 30px;">Smart Ag</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -106,9 +106,9 @@
 
         <!-- Login/Register -->
         <li class="nav-item">
-          <button class="btn btn-gold rounded-pill px-4" onclick="openModal()">
+          <a class="btn btn-gold rounded-pill px-4" href="/registration">
             <i class="fas fa-user-plus"></i> Login/Register
-          </button>
+</a>
         </li>
 
         <!-- Dark Mode -->
@@ -174,77 +174,6 @@
   </div>
 </footer>
 <!-- ===== LOGIN / REGISTER MODAL ===== -->
-<div class="modal fade" id="loginModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header border-0">
-        <h5 class="modal-title"><i class="fas fa-user text-gold"></i> Farmer Account</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <ul class="nav nav-tabs justify-content-center border-0" id="authTabs" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-pane" type="button" role="tab">Login</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-pane" type="button" role="tab">Register</button>
-          </li>
-        </ul>
-        <div class="tab-content mt-3">
-          <div class="tab-pane fade show active" id="login-pane" role="tabpanel">
-            <form>
-              <div class="mb-3">
-                <label class="form-label">Mobile Number</label>
-                <input type="tel" class="form-control rounded-pill" placeholder="Enter mobile number" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control rounded-pill" placeholder="Enter password" />
-              </div>
-              <button type="submit" class="btn btn-gold rounded-pill w-100 py-2"><i class="fas fa-sign-in-alt"></i> Login</button>
-              <p class="mt-3 text-center text-muted small">Forgot password? <a href="#" class="text-gold">Reset here</a></p>
-            </form>
-          </div>
-          <div class="tab-pane fade" id="register-pane" role="tabpanel">
-            <form>
-              <div class="mb-3">
-                <label class="form-label">Full Name</label>
-                <input type="text" class="form-control rounded-pill" placeholder="Enter your full name" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Mobile Number</label>
-                <input type="tel" class="form-control rounded-pill" placeholder="Enter 10-digit mobile" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control rounded-pill" placeholder="Create password (min 6 chars)" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Confirm Password</label>
-                <input type="password" class="form-control rounded-pill" placeholder="Re-enter password" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">I am a</label>
-                <select class="form-select rounded-pill">
-                  <option value="farmer">Farmer</option>
-                  <option value="expert">Agriculture Expert</option>
-                  <option value="dealer">Seed/Dealer</option>
-                </select>
-              </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="terms" />
-                <label class="form-check-label small" for="terms">I agree to the <a href="#" class="text-gold">Terms &amp; Conditions</a></label>
-              </div>
-              <button type="submit" class="btn btn-gold rounded-pill w-100 py-2"><i class="fas fa-user-plus"></i> Register</button>
-              <p class="mt-3 text-center text-muted small">Already have an account? <a href="#" class="text-gold" onclick="switchTab('login-tab')">Login here</a></p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ===== CHATBOT FLOAT ===== -->
 <button class="chat-float" onclick="alert('🤖 Chatbot: Namaste! Main aapki kya madad kar sakta hu?')">
   <i class="fas fa-comment-dots fs-4 me-2"></i> Chat with AI

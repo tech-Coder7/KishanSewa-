@@ -566,7 +566,7 @@
         </nav>
         <div class="bottom-links">
             <a href="#"><i class="fas fa-question-circle"></i><span>Help</span></a>
-            <a href="#"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
         </div>
     </aside>
 

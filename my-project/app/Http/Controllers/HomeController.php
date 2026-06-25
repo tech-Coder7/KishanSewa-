@@ -36,5 +36,5 @@ class HomeController extends Controller
   public function crop(){
   return view('crop');
   }
- 
+  
   }
