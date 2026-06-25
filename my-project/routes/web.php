@@ -5,6 +5,10 @@ use App\Http\Controllers\DashController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
+use App\Http\Controllers\VegetableController;
+
+
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -34,3 +38,31 @@ route::get('/login',[Authcontroller::class,'login']);
 // Admin 
 
 Route::get('/admin/dashboard',[DashController::class,'index']);
+
+
+
+
+
+
+
+// ============================================
+// VEGETABLE ROUTES
+// ============================================
+Route::prefix('vegetables')->name('vegetable.')->group(function () {
+    // Main page
+    Route::get('/', [VegetableController::class, 'index'])->name('index');
+
+    // Season-wise vegetables
+    Route::get('/season/{season}', [VegetableController::class, 'season'])->name('season');
+
+    // Vegetable detail (with id parameter)
+    Route::get('/detail/{id}', [VegetableController::class, 'detail'])->name('detail');
+});
+
+// ============================================
+// API ROUTES (For AJAX)
+// ============================================
+Route::prefix('api')->group(function () {
+    Route::post('/vegetable-recommendations', [VegetableController::class, 'aiRecommendations'])
+        ->name('api.vegetable.recommendations');
+});
