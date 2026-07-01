@@ -1,12 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KishanSewa · Government Schemes</title>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 
@@ -176,41 +169,7 @@
       .scheme-card { padding: 1.5rem; }
     }
   </style>
-</head>
 
-<body>
-
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar navbar-expand-lg sticky-top">
-  <div class="container">
-    <a class="navbar-brand" href="#" style="color: #f9e7b3; font-size: 1.9rem; font-weight: 600;">
-      KishanSewa <span style="color: #f9b81b; font-size: 0.9rem; background: #CBBAB3; padding: 0.2rem 0.8rem; border-radius: 30px;">Smart Ag</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-info-circle"></i> About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-seedling"></i> Crops</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-cogs"></i> Services</a></li>
-        <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-file-signature"></i> Schemes</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li class="nav-item">
-          <a class="btn btn-gold rounded-pill px-4" href="/registration">
-            <i class="fas fa-user-plus"></i> Login/Register
-          </a>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-outline-light rounded-pill px-3" onclick="toggleDark()">
-            <i class="fas fa-moon"></i>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
 <!-- ===== MAIN WRAPPER ===== -->
 <div class="main-wrapper">
@@ -294,47 +253,5 @@
   </div>
 
 </div>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer mt-0">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <h4 style="color:#f9e7b3;">Kishan Sewa</h4>
-        <p class="text-white-50">Smart Agriculture System jo desh ke kisaano ko aadhunik takneek, sahi jankari aur naye avsaron se jodkar unhe samriddh banata hai.</p>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <h5 style="color:#f9e7b3;">Mukhya Links</h5>
-        <a href="#" class="footer-link">Home</a>
-        <a href="#" class="footer-link">About Us</a>
-        <a href="#" class="footer-link">Schemes</a>
-        <a href="#" class="footer-link">Contact</a>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <h5 style="color:#f9e7b3;">Kishan Helplines</h5>
-        <p><strong>Kisan Call Center:</strong><br/>1800-180-1551 (Toll-Free)</p>
-        <p><strong>Support:</strong><br/>support@kishansewa.com</p>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <h5 style="color:#f9e7b3;">Mobile App</h5>
-        <a href="#" class="btn btn-gold rounded-pill px-4"><i class="fab fa-google-play"></i> GET IT ON Google Play</a>
-      </div>
-    </div>
-    <hr class="border-secondary mt-4"/>
-    <p class="text-center text-white-50 mb-0">© 2026 KishanSewa. All Rights Reserved. Made with ❤️ for Indian Farmers</p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  function toggleDark() {
-    document.body.classList.toggle('dark-mode');
-    const btn = document.querySelector('.navbar .btn-outline-light');
-    btn.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-  }
-</script>
-
-</body>
-</html>
 
 @endsection
