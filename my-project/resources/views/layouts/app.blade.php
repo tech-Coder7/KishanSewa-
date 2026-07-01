@@ -41,27 +41,22 @@
 
         <!-- About -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/about-us" data-bs-toggle="dropdown">
             <i class="fas fa-info-circle"></i> About
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-bullseye"></i> Our Mission</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-users"></i> Our Team</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-history"></i> History</a></li>
-          </ul>
         </li>
 
         <!-- Crops -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/crop" data-bs-toggle="dropdown">
             <i class="fas fa-seedling"></i> Crops
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-wheat-alt"></i> Wheat (Gehun)</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-seedling"></i> Rice (Dhan)</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-seedling"></i> Maize (Makai)</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-seedling"></i> Pulses (Dal)</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-carrot"></i> Vegetables</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-wheat-alt"></i> Wheat (Gehun)</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Rice (Dhan)</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Maize (Makai)</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Pulses (Dal)</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-carrot"></i> Vegetables</a></li>
           </ul>
         </li>
 
@@ -97,11 +92,11 @@
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             <i class="fas fa-envelope"></i> Contact
           </a>
-          <ul class="dropdown-menu">
+          <!-- <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#"><i class="fas fa-headset"></i> Support</a></li>
             <li><a class="dropdown-item" href="#"><i class="fas fa-phone-alt"></i> Helpline</a></li>
             <li><a class="dropdown-item" href="#"><i class="fas fa-comment"></i> Feedback</a></li>
-          </ul>
+          </ul> -->
         </li>
 
         <!-- Login/Register -->

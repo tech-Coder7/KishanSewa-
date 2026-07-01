@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +8,9 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- Google Font (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -228,14 +231,17 @@
             background: #e8f5e9;
             color: #43a047;
         }
+
         .stat-card .icon.blue {
             background: #e3f0fc;
             color: #1a73e8;
         }
+
         .stat-card .icon.orange {
             background: #fff3e0;
             color: #ef6c00;
         }
+
         .stat-card .icon.purple {
             background: #f3e5f5;
             color: #7b1fa2;
@@ -447,10 +453,12 @@
             background: #ffebee;
             color: #c62828;
         }
+
         .alert-item .alert-icon.yellow {
             background: #fff8e1;
             color: #f57f17;
         }
+
         .alert-item .alert-icon.blue {
             background: #e3f2fd;
             color: #0d47a1;
@@ -483,6 +491,7 @@
             .charts-row {
                 grid-template-columns: 1fr;
             }
+
             .bottom-row {
                 grid-template-columns: 1fr;
             }
@@ -494,35 +503,45 @@
                 padding: 1rem 0.5rem;
                 align-items: center;
             }
+
             .sidebar .logo span {
                 display: none;
             }
+
             .sidebar .logo {
                 font-size: 1.6rem;
                 justify-content: center;
             }
+
             .sidebar nav a span {
                 display: none;
             }
+
             .sidebar nav a {
                 justify-content: center;
                 padding: 0.75rem;
             }
+
             .sidebar .bottom-links a span {
                 display: none;
             }
+
             .topbar .search-box input {
                 width: 100px;
             }
+
             .topbar h1 {
                 font-size: 1.3rem;
             }
+
             .topbar .weather-widget span {
                 display: none;
             }
+
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
             }
+
             .main {
                 padding: 1rem;
             }
@@ -532,6 +551,7 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+
             .topbar .search-box input {
                 width: 80px;
             }
@@ -540,12 +560,14 @@
         .sidebar::-webkit-scrollbar {
             width: 4px;
         }
+
         .sidebar::-webkit-scrollbar-thumb {
             background: #3a6a4a;
             border-radius: 10px;
         }
     </style>
 </head>
+
 <body>
 
     <!-- ========== SIDEBAR ========== -->
@@ -555,28 +577,34 @@
             <span>AgriDash</span>
         </div>
         <nav>
-            <a href="#" class="active"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
-            <a href="#"><i class="fas fa-tractor"></i><span>Fields</span></a>
-            <a href="#"><i class="fas fa-chart-line"></i><span>Crop Analytics</span></a>
+            <a href="/admin/dashboard" class="active"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+            <a href="/admin/categories"><i class="fas fa-tractor"></i><span>Categories</span></a>
+            <a href="/admin/crop"><i class="fas fa-chart-line"></i><span>Crop </span></a>
             <a href="#"><i class="fas fa-cloud-sun-rain"></i><span>Weather</span></a>
-            <a href="#"><i class="fas fa-water"></i><span>Irrigation</span></a>
-            <a href="#"><i class="fas fa-truck"></i><span>Harvest</span></a>
-            <a href="#"><i class="fas fa-users"></i><span>Workers</span></a>
+
             <a href="#"><i class="fas fa-cog"></i><span>Settings</span></a>
         </nav>
         <div class="bottom-links">
-            <a href="#"><i class="fas fa-question-circle"></i><span>Help</span></a>
+
             <a href="/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
         </div>
     </aside>
 
     <!-- ========== MAIN ========== -->
-      @yield('admincontent')
+    @yield('admincontent')
 
     <!-- ===== CHARTS.JS ===== -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
-    </script>
+        </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
     <script>
         // ===== BAR CHART: Yield by Field =====
         const yieldCtx = document.getElementById('yieldChart').getContext('2d');
@@ -644,4 +672,5 @@
     </script>
 
 </body>
+
 </html>
