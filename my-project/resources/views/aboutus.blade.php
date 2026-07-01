@@ -26,6 +26,9 @@
             background: rgba(46, 125, 50, 0.05);
             border-radius: 50%;
         }
+ 
+
+
 
         .about-hero-content {
             position: relative;
@@ -1089,7 +1092,7 @@
                 </div>
             </div>
         </div>
-    </section>
+     </section>
 
     <!-- ============================================================
          JavaScript for Counter Animation
