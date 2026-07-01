@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <div class="carousel-item slide-3">
+      <div class="carousel-item slide-3"> 
         <div class="carousel-content">
           <div>
             <i class="fas fa-hand-holding-heart" style="font-size:3.5rem; color:var(--gold); margin-bottom:0.5rem;"></i>

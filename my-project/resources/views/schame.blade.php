@@ -1,436 +1,257 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        /* Shared Global Branding Navbar and Base styles */
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #198754;
-            margin-left: -50px;
-        }
-        .logo-text h4 {
-            margin: 0;
-            color: #2E7D32;
-            font-weight: bold;
-            font-size: 28px;
-        }
-        .logo-text h2 {
-            margin: 0;
-            color: gray;
-            font-size: 16px;
-            font-weight: 400;
-        }
-        .navbar-nav .nav-link {
-            font-size: 18px;
-            font-weight: 500;
-            margin: 0 8px;
-            color: #222;
-        }
-        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-            color: #2E7D32;
-        }
-        .btn-success {
-            border-radius: 30px;
-            padding: 8px 25px;
-        }
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 
-        /* Schemes Page Specific Header */
-        .page-header {
-            background: linear-gradient(rgba(11, 77, 22, 0.85), rgba(11, 77, 22, 0.9)), url('image/hero.jpg') center/cover no-repeat;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-        .page-header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        /* Filter Controls */
-        .filter-btn {
-            border-radius: 20px;
-            padding: 8px 20px;
-            font-weight: 500;
-            border: 1px solid #2e7d32;
-            color: #2e7d32;
-            background: transparent;
-            transition: 0.3s;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background-color: #2e7d32;
-            color: white;
-        }
-
-        /* Scheme Cards styling */
-        .scheme-card {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e5e7eb;
-        }
-        .scheme-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-        }
-        .scheme-icon-box {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        /* Background Helpers matches your theme colors */
-        .bg-light-green   { background-color: #e8f5e9; }
-        .text-dark-green  { color: #2e7d32; }
-        .bg-light-orange  { background-color: #fff3e0; }
-        .text-dark-orange { color: #f57c00; }
-        .bg-light-blue    { background-color: #e3f2fd; }
-        .text-dark-blue   { color: #1565c0; }
-        .bg-light-purple  { background-color: #f3e5f5; }
-        .text-dark-purple { color: #7b1fa2; }
-
-        .scheme-card h3 {
-            font-size: 20px;
-            color: #1f2937;
-            margin: 0 0 12px 0;
-            font-weight: 700;
-        }
-        .scheme-card p {
-            font-size: 14px;
-            color: #4b5563;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .scheme-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #f3f4f6;
-            padding-top: 15px;
-            margin-top: auto;
-        }
-        .status-badge {
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .badge-green  { background-color: #e8f5e9; color: #2e7d32; }
-        .badge-blue   { background-color: #e3f2fd; color: #1565c0; }
-        .badge-orange { background-color: #fff3e0; color: #f57c00; }
-
-        .scheme-link {
-            color: #2e7d32;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .scheme-link:hover {
-            color: #1b5e20;
-        }
-
-        /* Footer Formatting */
-        .main-footer {
-            background-color: #111827;
-            color: #9ca3af;
-            padding: 60px 0 0 0;
-            border-top: 5px solid #2e7d32;
-        }
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 40px 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-        }
-        .footer-column h3 {
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            font-weight: 600;
-        }
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -6px;
-            width: 40px;
-            height: 2px;
-            background-color: #2e7d32;
-        }
-        .footer-logo-text {
-            font-size: 24px;
-            font-weight: 800;
-            color: #ffffff;
-        }
-        .footer-logo-text span {
-            color: #2e7d32;
-        }
-        .social-icons a {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #1f2937;
-            color: #9ca3af;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            margin-right: 8px;
-            transition: 0.3s;
-        }
-        .social-icons a:hover {
-            background-color: #2e7d32;
-            color: white;
-            transform: translateY(-3px);
-        }
-        .footer-bottom {
-            background-color: #0b0f19;
-            padding: 20px 0;
-            border-top: 1px solid #1f2937;
-            font-size: 13px;
-        }
-        .text-red { color: #ef4444; }
-        @media (max-width:768px) {
-            .logo-img { margin-left: 0; }
-        }
-    </style>
-</head>
-<body>
-
-<!-- Navbar -->
-<!-- <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <img src="image/agriculture_logo.png" alt="Logo" class="logo-img" width="55" height="55">
-            <div class="logo-text ms-2">
-                <h4>KishanSewa</h4>
-                <h2>Smart Agriculture System</h2>
-            </div>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="crop.html">Crops</a></li>
-                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                <li class="nav-item"><a class="nav-link active" href="schemes.html">Schemes</a></li>
-                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-            <a href="login.html" class="btn btn-success px-4">Login</a>
-        </div>
-    </div>
-</nav> -->
-
-<!-- Hero Page Title Segment -->
-<header class="page-header">
-    <div class="container">
-        <h1>Sarkari Yojnaayein (Government Schemes)</h1>
-        <p class="lead mb-0">Check your eligibility, find direct benefits, and apply online for official agricultural support.</p>
-    </div>
-</header>
-
-<!-- Main Interactive Body Section -->
-<main class="container py-5">
-    <!-- Scheme Categorization Filters -->
-    <div class="row mb-4">
-        <div class="col-12 text-center">
-            <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-                <button class="filter-btn active" onclick="filterSchemes('all')">All Categories</button>
-                <button class="filter-btn" onclick="filterSchemes('financial')">Financial Support</button>
-                <button class="filter-btn" onclick="filterSchemes('insurance')">Crop Insurance</button>
-                <button class="filter-btn" onclick="filterSchemes('subsidy')">Infrastructure & Subsidies</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Schemes Cards Grid Matrix -->
-    <div class="row g-4" id="schemesGrid">
-        <!-- Scheme 1 -->
-        <div class="col-lg-4 col-md-6 scheme-item" data-category="financial">
-            <div class="scheme-card">
-                <div>
-                    <div class="scheme-icon-box bg-light-green">
-                        <i class="fas fa-hand-holding-usd text-dark-green"></i>
-                    </div>
-                    <h3>PM-KISAN Samman Nidhi</h3>
-                    <p>Chote aur simant kisaano ko har saal ₹6,000 ki arthik sahayata teen barabar kishton mein seedhe bank khate mein di jaati hai.</p>
-                </div>
-                <div class="scheme-footer">
-                    <span class="status-badge badge-green">Active</span>
-                    <a href="#" class="scheme-link">Read Details &rarr;</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scheme 2 -->
-        <div class="col-lg-4 col-md-6 scheme-item" data-category="insurance">
-            <div class="scheme-card">
-                <div>
-                    <div class="scheme-icon-box bg-light-orange">
-                        <i class="fas fa-cloud-sun-rain text-dark-orange"></i>
-                    </div>
-                    <h3>Pradhan Mantri Fasal Bima</h3>
-                    <p>Kharab mausam, baadh, keet ya sookhe se hone wale fasal ke nuksaan ka bima (insurance) aur sahi samay par muavza paayein.</p>
-                </div>
-                <div class="scheme-footer">
-                    <span class="status-badge badge-blue">Apply Open</span>
-                    <a href="#" class="scheme-link">Apply Now &rarr;</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scheme 3 -->
-        <div class="col-lg-4 col-md-6 scheme-item" data-category="subsidy">
-            <div class="scheme-card">
-                <div>
-                    <div class="scheme-icon-box bg-light-blue">
-                        <i class="fas fa-solar-panel text-dark-blue"></i>
-                    </div>
-                    <h3>PM-KUSUM (Solar Pump)</h3>
-                    <p>Kheti ke liye solar pump lagwane par sarkar se 60% tak ki bhari subsidy paayein aur diesel-bijli ka kharcha bilkul khatam karein.</p>
-                </div>
-                <div class="scheme-footer">
-                    <span class="status-badge badge-orange">Subsidy Active</span>
-                    <a href="#" class="scheme-link">Check Status &rarr;</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scheme 4 -->
-        <div class="col-lg-4 col-md-6 scheme-item" data-category="financial">
-            <div class="scheme-card">
-                <div>
-                    <div class="scheme-icon-box bg-light-purple">
-                        <i class="fas fa-credit-card text-dark-purple"></i>
-                    </div>
-                    <h3>Kisan Credit Card (KCC)</h3>
-                    <p>Kisaano ko kheti ki jaruraton ke liye bohot kambyaj dar (low interest rates) par instanct loan ki suvidha pradan ki jaati hai.</p>
-                </div>
-                <div class="scheme-footer">
-                    <span class="status-badge badge-green">Always Open</span>
-                    <a href="#" class="scheme-link">Apply to Bank &rarr;</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scheme 5 -->
-        <div class="col-lg-4 col-md-6 scheme-item" data-category="subsidy">
-            <div class="scheme-card">
-                <div>
-                    <div class="scheme-icon-box bg-light-green">
-                        <i class="fas fa-seedling text-dark-green"></i>
-                    </div>
-                    <h3>Paramparagat Krishi Vikas</h3>
-                    <p>Organic (Jaivik) kheti ko badhava dene ke liye kisaano ko ₹50,000 prati hektar tak ki vittiya sahayata di jaati hai.</p>
-                </div>
-                <div class="scheme-footer">
-                    <span class="status-badge badge-green">Active</span>
-                    <a href="#" class="scheme-link">Read Details &rarr;</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scheme 6 -->
-        <div class="col-lg-4 col-md-6 scheme-item" data-category="subsidy">
-            <div class="scheme-card">
-                <div>
-                    <div class="scheme-icon-box bg-light-blue">
-                        <i class="fas fa-tint text-dark-blue"></i>
-                    </div>
-                    <h3>PM Krishi Sinchayee Yojana</h3>
-                    <p>"Per Drop More Crop" ke tahat khet tak pani pahunchane aur drip/sprinkler irrigation systems lagane par bhari chhoot milti hai.</p>
-                </div>
-                <div class="scheme-footer">
-                    <span class="status-badge badge-orange">Subsidy Active</span>
-                    <a href="#" class="scheme-link">Apply Now &rarr;</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
-<!-- Unified Footer Structure Section
-<footer class="main-footer">
-  <div class="footer-container">
-    <div class="footer-column brand-info">
-      <div class="footer-logo">
-        <span class="footer-logo-text">Kishan<span>Sewa</span></span>
-      </div>
-      <p class="brand-desc">Smart Agriculture System jo desh ke kisaano ko aadhunik takneek, sahi jankari aur naye avsaron se jodkar unhe samriddh banata hai.</p>
-      <div class="social-icons">
-        <a href="https://www.google.com" target="_blank" title="Google"><i class="fab fa-google"></i></a>
-        <a href="https://www.facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      </div>
-    </div>
-    
-    <div class="footer-column">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="schemes.html">Government Schemes</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-    </div>
-
-    <div class="footer-column">
-        <h3>Emergency Help</h3>
-        <ul class="footer-links">
-            <li><i class="fas fa-phone-alt text-success me-2"></i> Kisan Helpline: 1800-180-1551</li>
-            <li><i class="fas fa-envelope text-success me-2"></i> support@kishansewa.gov</li>
-        </ul>
-    </div>
-  </div>
-  
-  <div class="footer-bottom">
-    <div class="container d-flex justify-content-between flex-wrap gap-2">
-      <p>&copy; 2026 KishanSewa. All Rights Reserved.</p>
-      <p>Made with <span class="text-red">&hearts;</span> for Farmers.</p>
-    </div>
-  </div>
-</footer> -->
-
-<!-- Filtering Script Functionality -->
-<script>
-    function filterSchemes(category) {
-        // Toggle Active class in buttons
-        const buttons = document.querySelectorAll('.filter-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-
-        // Filter functionality
-        const items = document.querySelectorAll('.scheme-item');
-        items.forEach(item => {
-            if (category === 'all' || item.getAttribute('data-category') === category) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
+  <style>
+    :root {
+      --gold: #f9b81b;
+      --dark-green: #1e3a2b;
+      --bg-color: #f5f9f0;
+      --card-bg: #ffffffdd;
+      --text-color: #1e2f1e;
+      --shadow: rgba(0, 30, 10, 0.08);
+      --nav-bg: #1e3a2b;
     }
-</script>
 
-<!-- Bootstrap JS Bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body.dark-mode {
+      --bg-color: #121f18 !important;
+      --text-color: #e6f0da !important;
+      --card-bg: #1e2f26dd !important;
+      --nav-bg: #0d1f14 !important;
+    }
+
+    body.dark-mode .bg-white { background-color: var(--card-bg) !important; }
+    body.dark-mode .card { background-color: var(--card-bg) !important; color: var(--text-color) !important; }
+    body.dark-mode .text-muted { color: #bdd3ae !important; }
+    body.dark-mode .navbar { background-color: var(--nav-bg) !important; }
+    body.dark-mode .footer { background-color: #0d1f14 !important; }
+    body.dark-mode .scheme-card { background-color: var(--card-bg) !important; border-color: #2a4d3a !important; }
+
+    .navbar {
+      background-color: var(--nav-bg);
+      border-bottom: 3px solid var(--gold);
+      padding: 0.6rem 0;
+    }
+    .navbar .nav-link {
+      color: #e6f0da !important;
+      font-weight: 500;
+    }
+    .navbar .nav-link:hover { color: #ffffff !important; }
+    .navbar .nav-link.active { color: var(--gold) !important; }
+    .navbar .dropdown-toggle::after { display: none !important; }
+    .navbar-toggler { border-color: rgba(255,255,255,0.3); }
+    .navbar-toggler-icon { filter: invert(1); }
+
+    .btn-gold {
+      background-color: var(--gold);
+      color: #1e2f1e;
+      font-weight: 600;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-gold:hover {
+      background-color: #fcc94b;
+      color: #1e2f1e;
+      transform: scale(1.03);
+      box-shadow: 0 4px 15px rgba(249, 184, 27, 0.4);
+    }
+
+    .scheme-hero {
+      background: linear-gradient(135deg, #1e3a2b, #2d5a3d);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      border-left: 6px solid var(--gold);
+    }
+    .scheme-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .scheme-hero p {
+      font-size: 1.1rem;
+      color: #d4e4c9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .scheme-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid #d4e4c9;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .scheme-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px var(--shadow);
+      border-color: var(--gold);
+    }
+    .scheme-card .scheme-icon {
+      font-size: 2.8rem;
+      color: var(--gold);
+      background: #f9b81b20;
+      width: 70px;
+      height: 70px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .scheme-card h4 { font-weight: 700; }
+    .scheme-card .badge-status {
+      background: var(--gold);
+      color: #1e2f1e;
+      font-weight: 600;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+    .scheme-card .btn-visit {
+      margin-top: auto;
+      border-radius: 50px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 600;
+      border: 2px solid var(--gold);
+      color: var(--dark-green);
+      background: transparent;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    .scheme-card .btn-visit:hover {
+      background: var(--gold);
+      color: #1e2f1e;
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(249, 184, 27, 0.3);
+    }
+    body.dark-mode .scheme-card .btn-visit {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+    body.dark-mode .scheme-card .btn-visit:hover {
+      color: #1e2f1e;
+    }
+
+    .footer {
+      background: #0d1f14;
+      color: #c7d9cb;
+      padding: 50px 0 20px;
+    }
+    .footer-link { color: #bdd3ae; text-decoration: none; display: block; margin: 0.3rem 0; }
+    .footer-link:hover { color: var(--gold); }
+
+    .main-wrapper {
+      padding: 1.5rem 1.5rem 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: var(--bg-color);
+    }
+
+    @media (max-width: 576px) {
+      .main-wrapper { padding: 0.8rem; }
+      .scheme-hero { padding: 2rem 1rem; }
+      .scheme-hero h1 { font-size: 2rem; }
+      .scheme-card { padding: 1.5rem; }
+    }
+  </style>
+
+
+<!-- ===== MAIN WRAPPER ===== -->
+<div class="main-wrapper">
+
+  <!-- ===== HERO ===== -->
+  <div class="scheme-hero">
+    <h1><i class="fas fa-file-signature text-gold me-3"></i>सरकारी योजनाएँ</h1>
+    <p>किसानों के लिए चलाई जा रही प्रमुख योजनाओं की पूरी जानकारी और सीधा लिंक – सरकारी वेबसाइट पर विजिट करें।</p>
+  </div>
+
+  <!-- ===== SCHEMES GRID ===== -->
+  <div class="row g-4">
+
+    <!-- 1. PM-KISAN -->
+    <div class="col-md-6 col-lg-3">
+      <div class="scheme-card">
+        <div class="scheme-icon"><i class="fas fa-hand-holding-usd"></i></div>
+        <h4>PM-KISAN</h4>
+        <span class="badge-status"><i class="fas fa-check-circle"></i> Active</span>
+        <p class="text-muted mt-2">Pradhan Mantri Kisan Samman Nidhi – har saal ₹6,000 ki sahayata.</p>
+        <a href="https://pmkisan.gov.in/" target="_blank" class="btn-visit">
+          <i class="fas fa-external-link-alt me-2"></i> Official Website
+        </a>
+      </div>
+    </div>
+
+    <!-- 2. Fasal Bima -->
+    <div class="col-md-6 col-lg-3">
+      <div class="scheme-card">
+        <div class="scheme-icon"><i class="fas fa-shield-alt"></i></div>
+        <h4>Fasal Bima</h4>
+        <span class="badge-status"><i class="fas fa-check-circle"></i> Active</span>
+        <p class="text-muted mt-2">Pradhan Mantri Fasal Bima Yojana – fasal ke nuksaan ka bima.</p>
+        <a href="https://pmfby.gov.in/" target="_blank" class="btn-visit">
+          <i class="fas fa-external-link-alt me-2"></i> Official Website
+        </a>
+      </div>
+    </div>
+
+    <!-- 3. KUSUM -->
+    <div class="col-md-6 col-lg-3">
+      <div class="scheme-card">
+        <div class="scheme-icon"><i class="fas fa-solar-panel"></i></div>
+        <h4>KUSUM</h4>
+        <span class="badge-status"><i class="fas fa-check-circle"></i> Active</span>
+        <p class="text-muted mt-2">PM-KUSUM – solar pump lagwane par 60% tak subsidy.</p>
+        <a href="https://pmkusum.mnre.gov.in/" target="_blank" class="btn-visit">
+          <i class="fas fa-external-link-alt me-2"></i> Official Website
+        </a>
+      </div>
+    </div>
+
+    <!-- 4. E-NAM -->
+    <div class="col-md-6 col-lg-3">
+      <div class="scheme-card">
+        <div class="scheme-icon"><i class="fas fa-store"></i></div>
+        <h4>E-NAM</h4>
+        <span class="badge-status"><i class="fas fa-check-circle"></i> Active</span>
+        <p class="text-muted mt-2">National Agriculture Market – online mandi platform.</p>
+        <a href="https://www.enam.gov.in/" target="_blank" class="btn-visit">
+          <i class="fas fa-external-link-alt me-2"></i> Official Website
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== EXTRA NOTE ===== -->
+  <div class="mt-5 p-4 rounded-4" style="background: #f9b81b15; border: 1px solid var(--gold);">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h5 class="fw-bold"><i class="fas fa-info-circle" style="color: var(--gold);"></i> क्या आप कोई नई योजना ढूंढ रहे हैं?</h5>
+        <p class="text-muted mb-0">अधिक योजनाओं के लिए सरकारी पोर्टल <strong>https://www.india.gov.in/</strong> पर विजिट करें।</p>
+      </div>
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <a href="https://www.india.gov.in/" target="_blank" class="btn btn-gold rounded-pill px-4">
+          <i class="fas fa-globe me-2"></i> Explore More
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 @endsection

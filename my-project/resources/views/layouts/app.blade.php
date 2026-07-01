@@ -41,67 +41,62 @@
 
         <!-- About -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/about-us" data-bs-toggle="dropdown">
             <i class="fas fa-info-circle"></i> About
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-bullseye"></i> Our Mission</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-users"></i> Our Team</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-history"></i> History</a></li>
-          </ul>
         </li>
 
         <!-- Crops -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/crop" data-bs-toggle="dropdown">
             <i class="fas fa-seedling"></i> Crops
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-wheat-alt"></i> Wheat (Gehun)</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-seedling"></i> Rice (Dhan)</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-seedling"></i> Maize (Makai)</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-seedling"></i> Pulses (Dal)</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-carrot"></i> Vegetables</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-wheat-alt"></i> Wheat (Gehun)</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Rice (Dhan)</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Maize (Makai)</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Pulses (Dal)</a></li>
+            <li><a class="dropdown-item" href="/crop"><i class="fas fa-carrot"></i> Vegetables</a></li>
           </ul>
         </li>
 
         <!-- Services -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/services" data-bs-toggle="dropdown">
             <i class="fas fa-cogs"></i> Services
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-robot"></i> AI Crop Advisor</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-cloud-sun"></i> Weather Updates</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line"></i> Market Prices</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-user-md"></i> Crop Doctor</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-drone"></i> Drone Spray</a></li>
+            <li><a class="dropdown-item" href="/services"><i class="fas fa-robot"></i> AI Crop Advisor</a></li>
+            <li><a class="dropdown-item" href="/services"><i class="fas fa-cloud-sun"></i> Weather Updates</a></li>
+            <li><a class="dropdown-item" href="/services"><i class="fas fa-chart-line"></i> Market Prices</a></li>
+            <li><a class="dropdown-item" href="/services"><i class="fas fa-user-md"></i> Crop Doctor</a></li>
+            <li><a class="dropdown-item" href="/services"><i class="fas fa-drone"></i> Drone Spray</a></li>
           </ul>
         </li>
 
         <!-- Schemes -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/schame" data-bs-toggle="dropdown">
             <i class="fas fa-file-signature"></i> Schemes
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-hand-holding-usd"></i> PM-KISAN</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-shield-alt"></i> Fasal Bima</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-solar-panel"></i> KUSUM</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-store"></i> E-NAM</a></li>
+            <li><a class="dropdown-item" href="/schame"><i class="fas fa-hand-holding-usd"></i> PM-KISAN</a></li>
+            <li><a class="dropdown-item" href="/schame"><i class="fas fa-shield-alt"></i> Fasal Bima</a></li>
+            <li><a class="dropdown-item" href="/schame"><i class="fas fa-solar-panel"></i> KUSUM</a></li>
+            <li><a class="dropdown-item" href="/schame"><i class="fas fa-store"></i> E-NAM</a></li>
           </ul>
         </li>
 
         <!-- Contact -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/contact" data-bs-toggle="dropdown">
             <i class="fas fa-envelope"></i> Contact
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-headset"></i> Support</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-phone-alt"></i> Helpline</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-comment"></i> Feedback</a></li>
-          </ul>
+            <li><a class="dropdown-item" href="/contact"><i class="fas fa-headset"></i> Support</a></li>
+            <li><a class="dropdown-item" href="/contact"><i class="fas fa-phone-alt"></i> Helpline</a></li>
+            <li><a class="dropdown-item" href="/contact"><i class="fas fa-comment"></i> Feedback</a></li>
+          </ul> 
         </li>
 
         <!-- Login/Register -->
