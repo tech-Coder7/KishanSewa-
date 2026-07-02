@@ -174,11 +174,10 @@
                     <h5 class="card-title fw-bold mb-0">{{ $row->title }}</h5>
                     <span class="badge bg-primary badge-season">{{ $row->category->name }}</span>
                   </div>
-                  <p class="text-muted small mb-0">गेहूँ</p>
                   <hr class="my-2">
                   <!-- <p class="card-text small">Bharat ki sabse mahatvapurn khadya fasal, jo October-November mein boi jaati
                     hai.</p> -->
-                  <a href="/detailes"> <span class="text-success small fw-semibold">Poori jaankari padhein →</span></a>
+                  <a href="/details/{{ $row->slug }}"> <span class="text-success small fw-semibold">Poori jaankari padhein →</span></a>
                 </div>
               </div>
             </div>

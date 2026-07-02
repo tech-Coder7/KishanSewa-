@@ -10,4 +10,5 @@ class DashController extends Controller
     {
         return view("admin.dashboard");
     }
+    
 }

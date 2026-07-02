@@ -43,12 +43,16 @@ class HomeController extends Controller
 
   public function crop()
   {
-   $crop= Crop::with('category')->where('status', 1)->get();
-  //  dump($crop);
+    $crop = Crop::with('category')->where('status', 1)->get();
+    //  dump($crop);
     return view('crop', compact('crop'));
   }
-  public function detailes()
+  public function detailes($slug)
   {
-    return view('detailes');
+
+    $data = Crop::where('slug', $slug)->first();
+    $crop = Crop::where('categories_id', $data->categories_id)->get();
+
+    return view('detailes', compact('data' , 'crop'));
   }
 }

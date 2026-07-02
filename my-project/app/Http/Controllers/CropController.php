@@ -77,94 +77,69 @@ class CropController extends Controller
      * Show the form for editing the specified category.
      */
     public function edit($id)
-    {
-        $category = Category::findOrFail($id);
-        $parentCategories = Category::where('id', '!=', $id)
-            ->where('status', 'active')
-            ->orderBy('name')
-            ->get();
+{
+    $crop = Crop::findOrFail($id);
 
-        return view('admin.categories.edit', compact('category', 'parentCategories'));
-    }
+    $parentCategories = Category::where('status', 1)
+        ->whereNotNull('parent_id')
+        ->orderBy('name')
+        ->get();
+
+    return view('admin.crop.edit', compact('crop', 'parentCategories'));
+}
 
     /**
      * Update the specified category.
      */
-    public function update(Request $request, $id)
-    {
-        $category = Category::findOrFail($id);
+   public function update(Request $request, $id)
+{
+    $crop = Crop::findOrFail($id);
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:categories,name,' . $id,
-            'title' => 'nullable|string|max:255',
-            'parent_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'content' => 'nullable|string',
-            'description' => 'nullable|string',
-            'status' => 'required|in:active,inactive,pending',
-            'sort_order' => 'nullable|integer|min:0',
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string|max:500',
-        ]);
+    $request->validate([
+        'title' => 'required',
+        'content' => 'nullable',
+        'categories_id' => 'nullable',
+        'status' => 'required',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+    $crop->title = $request->title;
+    $crop->slug = Str::slug($request->title);
+    $crop->content = $request->content;
+    $crop->categories_id = $request->categories_id;
+    $crop->status = $request->status;
+
+    if ($request->hasFile('image')) {
+
+        if ($crop->image && Storage::disk('public')->exists($crop->image)) {
+            Storage::disk('public')->delete($crop->image);
         }
 
-        // Prevent category from being its own parent
-        if ($request->parent_id == $id) {
-            return redirect()->back()
-                ->withErrors(['parent_id' => 'A category cannot be its own parent.'])
-                ->withInput();
-        }
+        $image = $request->file('image');
+        $filename = time().'_'.$image->getClientOriginalName();
 
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            // Delete old image
-            if ($category->image && Storage::disk('public')->exists($category->image)) {
-                Storage::disk('public')->delete($category->image);
-            }
-
-            $image = $request->file('image');
-            $filename = time() . '_' . Str::slug($request->name) . '.' . $image->getClientOriginalExtension();
-            $path = $image->storeAs('categories', $filename, 'public');
-            $data['image'] = $path;
-        }
-
-        $category->update($data);
-
-        return redirect()->route('admin.categories.index')
-            ->with('success', 'Category updated successfully!');
+        $crop->image = $image->storeAs('crop', $filename, 'public');
     }
 
+    $crop->save();
+
+    return redirect('/admin/crop')->with('success', 'Crop updated successfully.');
+}
     /**
      * Remove the specified category.
      */
-    public function destroy($id)
-    {
-        $category = Category::findOrFail($id);
+   public function destroy($id)
+{
+    $crop = Crop::findOrFail($id);
 
-        // Check if category has children
-        if ($category->children()->count() > 0) {
-            return redirect()->back()
-                ->with('error', 'Cannot delete category with sub-categories. Please delete or reassign children first.');
-        }
-
-        // Delete image if exists
-        if ($category->image && Storage::disk('public')->exists($category->image)) {
-            Storage::disk('public')->delete($category->image);
-        }
-
-        $category->delete();
-
-        return redirect()->route('admin.categories.index')
-            ->with('success', 'Category deleted successfully!');
+    if ($crop->image && Storage::disk('public')->exists($crop->image)) {
+        Storage::disk('public')->delete($crop->image);
     }
+
+    $crop->delete();
+
+    return redirect('/admin/crop')->with('success', 'Crop deleted successfully.');
+}
 
     /**
      * Update category status.

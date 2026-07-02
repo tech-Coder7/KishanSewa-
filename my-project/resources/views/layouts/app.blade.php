@@ -41,7 +41,7 @@
 
         <!-- About -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/about-us" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/about-us">
             <i class="fas fa-info-circle"></i> About
           </a>
         </li>

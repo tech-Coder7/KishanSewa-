@@ -199,12 +199,12 @@
                 Crop
                 <span>manage farm Crop</span>
             </h1>
-          
+
         </div>
 
         <!-- ===== CREATE CATEGORY FORM (inline) ===== -->
         <div class="create-category-box">
-          
+
             <a href="/admin/crop/create" class="btn-submit"><i class="fas fa-plus-circle"></i> Create</a>
         </div>
 
@@ -215,8 +215,8 @@
         </div>
         <pre>
 
-      
-        </pre>
+
+            </pre>
         <div class="table-card">
             <table>
                 <thead>
@@ -227,13 +227,13 @@
                         <th>CAT</th>
                         <th>Status</th>
                         <th>Created at</th>
-                      
+
                         <th style="text-align:right;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                     @foreach ($data as $row)
+                    @foreach ($data as $row)
 
                         <tr>
                             <td><strong>{{ $row->id }}</strong></td>
@@ -245,23 +245,32 @@
 
                             <td style="text-align:right;">
                                 <div class="actions" style="justify-content:flex-end;">
-                                    <a href="#" title="Edit"><i class="fas fa-edit"></i></a>
-                                    <a href="#" class="danger" title="Delete"><i class="fas fa-trash-alt"></i></a>
+
+                                    <a href="{{ route('admin.crop.edit', $row->id) }}" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <a href="{{ route('admin.crop.delete', $row->id) }}" class="danger" title="Delete"
+                                        onclick="return confirm('Are you sure you want to delete this crop?')">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+
                                 </div>
                             </td>
+
                         </tr>
 
 
-                    @endforeach 
+                    @endforeach
 
 
                 </tbody>
             </table>
 
-           
+
         </div>
 
- 
+
 
     </main>
 
