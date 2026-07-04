@@ -57,31 +57,32 @@
   </div>
 
          <!-- ===== AI FEATURE CARDS ===== -->
-  <div class="my-4">
-    <h4 class="text-center mb-3"><i class="fas fa-brain text-gold"></i> AI Features at a Glance</h4>
-    <div class="row g-3">
-     @foreach ($crop as $row)
+<div class="col-12 col-sm-6 col-lg-4">
+    <div class="card ai-feature-card h-100">
+        <img src="{{ asset('storage/'.$row->image) }}"
+             class="card-img-top"
+             alt="{{ $row->title }}"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
 
-            <div class="col-12 col-sm-6 col-lg-4">
-              <div class="card crop-card shadow-sm h-100" onclick="showDetail(1)">
-                <img src="{{ asset('storage') }}/{{ $row->image }}" alt="Gehun (Wheat)"
-                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                <div class="img-placeholder" style="display:none;">🌾</div>
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title fw-bold mb-0">{{ $row->title }}</h5>
-                    <span class="badge bg-primary badge-season">{{ $row->category->name }}</span>
-                  </div>
-                  <hr class="my-2">
-                  <!-- <p class="card-text small">Bharat ki sabse mahatvapurn khadya fasal, jo October-November mein boi jaati
-                    hai.</p> -->
-                  <a href="/details/{{ $row->slug }}"> <span class="text-success small fw-semibold">Poori jaankari padhein →</span></a>
-                </div>
-              </div>
+        <div class="img-placeholder" style="display:none;">🌾</div>
+
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <h5 class="card-title mb-0">{{ $row->title }}</h5>
+
+                <span class="badge bg-primary">
+                    {{ $row->category->name }}
+                </span>
             </div>
-          @endforeach
+
+            <hr>
+
+            <a href="/details/{{ $row->slug }}" class="text-success fw-semibold text-decoration-none">
+                Poori jaankari padhein →
+            </a>
+        </div>
     </div>
-  </div>
+</div>
   <!-- ===== DASHBOARD ===== -->
   <div class="my-5">
     <h2 class="mb-4"><i class="fas fa-chart-pie text-gold"></i> Today's Agri Dashboard</h2>
@@ -130,7 +131,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- ===== AI SECTION ===== -->
   <div class="my-5">
     <div class="ai-section p-4 text-white">

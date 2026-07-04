@@ -255,32 +255,29 @@
     .slide-3 { background: linear-gradient(135deg, #1a3a2a, #3a6a4a); }
 
     /* ===== AI FEATURE CARDS ===== */
-    .ai-feature-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 1.5rem;
-      border: 1px solid #d4e4c9;
-      transition: 0.3s;
-      height: 100%;
-      box-shadow: 0 4px 12px var(--shadow);
-    }
-    .ai-feature-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px var(--shadow);
-      border-color: var(--gold);
-    }
-    .ai-feature-card i {
-      font-size: 2.2rem;
-      color: var(--gold);
-      background: #f9b81b20;
-      padding: 0.6rem;
-      border-radius: 16px;
-      margin-bottom: 0.8rem;
-    }
-    .ai-feature-card h5 { font-weight: 600; }
-    .ai-feature-card p { font-size: 0.95rem; color: #5a7a5a; }
-    body.dark-mode .ai-feature-card p { color: #bdd3ae; }
+    .crop-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid #dfe8d8;
+    transition:.3s;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
 
+.crop-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.crop-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.crop-card .card-body{
+    padding:20px;
+}
     /* ===== CARDS HOVER ===== */
     .card-hover {
       transition: transform 0.3s, box-shadow 0.3s;
