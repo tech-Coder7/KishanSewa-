@@ -14,6 +14,7 @@ class Crop extends Model
         'categories_id',
         'image',
         'status',
+        'is_home',
         'slug',
         'created_at',
     ];
@@ -22,6 +23,7 @@ class Crop extends Model
 
     protected $casts = [
         'status' => 'boolean',
+        'is_home' => 'boolean',
     ];
 
     // Relationship

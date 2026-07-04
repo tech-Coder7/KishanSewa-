@@ -18,8 +18,8 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="#" style="color: #f9e7b3; font-size: 1.9rem; font-weight: 600;">
-      KishanSewa <span style="color: #f9b81b; font-size: 0.9rem; background: #CBBAB3; padding: 0.2rem 0.8rem; border-radius: 30px;">Smart Ag</span>
+    <a class="navbar-brand" href="/" style="color: #f9e7b3; font-size: 1.9rem; font-weight: 600;">
+      KishanSewa 
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -29,14 +29,9 @@
 
         <!-- Home -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/">
             <i class="fas fa-home"></i> Home
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-globe"></i> Overview</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fas fa-newspaper"></i> News & Updates</a></li>
-          </ul>
         </li>
 
         <!-- About -->
@@ -52,11 +47,10 @@
             <i class="fas fa-seedling"></i> Crops
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/crop"><i class="fas fa-wheat-alt"></i> Wheat (Gehun)</a></li>
-            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Rice (Dhan)</a></li>
-            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Maize (Makai)</a></li>
-            <li><a class="dropdown-item" href="/crop"><i class="fas fa-seedling"></i> Pulses (Dal)</a></li>
-            <li><a class="dropdown-item" href="/crop"><i class="fas fa-carrot"></i> Vegetables</a></li>
+            @foreach ( $categories as $category )
+            <li><a class="dropdown-item" href="/categories?q={{ $category->id }}&name={{ $category->name }}">{{ $category->name }}</a></li>
+            @endforeach
+ 
           </ul>
         </li>
 
@@ -66,37 +60,36 @@
             <i class="fas fa-cogs"></i> Services
           </a>
           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/services"><i class="fas fa-chart-line"></i> Market Prices</a></li>
             <li><a class="dropdown-item" href="/services"><i class="fas fa-robot"></i> AI Crop Advisor</a></li>
             <li><a class="dropdown-item" href="/services"><i class="fas fa-cloud-sun"></i> Weather Updates</a></li>
-            <li><a class="dropdown-item" href="/services"><i class="fas fa-chart-line"></i> Market Prices</a></li>
-            <li><a class="dropdown-item" href="/services"><i class="fas fa-user-md"></i> Crop Doctor</a></li>
-            <li><a class="dropdown-item" href="/services"><i class="fas fa-drone"></i> Drone Spray</a></li>
+
           </ul>
         </li>
 
         <!-- Schemes -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/schame" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/schame">
             <i class="fas fa-file-signature"></i> Schemes
           </a>
-          <ul class="dropdown-menu">
+          <!-- <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/schame"><i class="fas fa-hand-holding-usd"></i> PM-KISAN</a></li>
             <li><a class="dropdown-item" href="/schame"><i class="fas fa-shield-alt"></i> Fasal Bima</a></li>
             <li><a class="dropdown-item" href="/schame"><i class="fas fa-solar-panel"></i> KUSUM</a></li>
             <li><a class="dropdown-item" href="/schame"><i class="fas fa-store"></i> E-NAM</a></li>
-          </ul>
+          </ul> -->
         </li>
 
         <!-- Contact -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/contact" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="/contact">
             <i class="fas fa-envelope"></i> Contact
           </a>
-          <ul class="dropdown-menu">
+          <!-- <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/contact"><i class="fas fa-headset"></i> Support</a></li>
             <li><a class="dropdown-item" href="/contact"><i class="fas fa-phone-alt"></i> Helpline</a></li>
             <li><a class="dropdown-item" href="/contact"><i class="fas fa-comment"></i> Feedback</a></li>
-          </ul> 
+          </ul>  -->
         </li>
 
         <!-- Login/Register -->
@@ -114,10 +107,10 @@
         </li>
 
         <!-- Notification -->
-        <li class="nav-item position-relative">
+        <!-- <li class="nav-item position-relative">
           <i class="fas fa-bell text-white fs-5" style="cursor:pointer;"></i>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
-        </li>
+        </li> -->
 
         <!-- DateTime -->
         <!-- <li class="nav-item">

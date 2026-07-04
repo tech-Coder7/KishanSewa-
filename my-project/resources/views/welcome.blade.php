@@ -56,117 +56,32 @@
     </button>
   </div>
 
-  <!-- ===== AI FEATURE CARDS ===== -->
+         <!-- ===== AI FEATURE CARDS ===== -->
   <div class="my-4">
     <h4 class="text-center mb-3"><i class="fas fa-brain text-gold"></i> AI Features at a Glance</h4>
     <div class="row g-3">
-      <div class="col-md-4">
-        <div class="ai-feature-card text-center">
-          <i class="fas fa-leaf"></i>
-          <h5>Crop Disease Detection</h5>
-          <p>Photo upload karein aur AI se bimari pehchane</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="ai-feature-card text-center">
-          <i class="fas fa-robot"></i>
-          <h5>AI Crop Recommendation</h5>
-          <p>Soil &amp; season ke hisaab se best crop suggest karein</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="ai-feature-card text-center">
-          <i class="fas fa-cloud-sun"></i>
-          <h5>Smart Weather Advisory</h5>
-          <p>Real-time weather alerts aur farming tips</p>
-        </div>
-      </div>
+     @foreach ($crop as $row)
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card crop-card shadow-sm h-100" onclick="showDetail(1)">
+                <img src="{{ asset('storage') }}/{{ $row->image }}" alt="Gehun (Wheat)"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="img-placeholder" style="display:none;">🌾</div>
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title fw-bold mb-0">{{ $row->title }}</h5>
+                    <span class="badge bg-primary badge-season">{{ $row->category->name }}</span>
+                  </div>
+                  <hr class="my-2">
+                  <!-- <p class="card-text small">Bharat ki sabse mahatvapurn khadya fasal, jo October-November mein boi jaati
+                    hai.</p> -->
+                  <a href="/details/{{ $row->slug }}"> <span class="text-success small fw-semibold">Poori jaankari padhein →</span></a>
+                </div>
+              </div>
+            </div>
+          @endforeach
     </div>
   </div>
-
-  <!-- ===== QUICK ACTIONS ===== -->
-  <div class="my-3">
-    <div class="d-flex flex-wrap gap-3 justify-content-center">
-      <a href="#" class="btn btn-dark rounded-pill px-4"><i class="fas fa-phone-alt"></i> Emergency Helpline</a>
-      <a href="#" class="btn btn-dark rounded-pill px-4"><i class="fas fa-map-marker-alt"></i> Nearest Mandi</a>
-      <a href="#" class="btn btn-dark rounded-pill px-4"><i class="fas fa-user-md"></i> Crop Doctor</a>
-      <a href="#" class="btn btn-dark rounded-pill px-4"><i class="fas fa-seedling"></i> Best Seeds</a>
-    </div>
-  </div>
-
-  <!-- ===== QUICK LINKS ===== -->
-  <div class="mb-4">
-    <div class="d-flex flex-wrap gap-3 justify-content-center">
-      <a href="#" class="btn btn-light rounded-pill px-4 border"><i class="fas fa-seedling text-gold"></i> Crop</a>
-      <a href="#" class="btn btn-light rounded-pill px-4 border"><i class="fas fa-cloud-sun text-gold"></i> Weather</a>
-      <a href="#" class="btn btn-light rounded-pill px-4 border"><i class="fas fa-chart-line text-gold"></i> Market Prices</a>
-      <a href="#" class="btn btn-light rounded-pill px-4 border"><i class="fas fa-robot text-gold"></i> AI Crop</a>
-      <a href="#" class="btn btn-light rounded-pill px-4 border"><i class="fas fa-file-signature text-gold"></i> Government</a>
-    </div>
-  </div>
-
-  <!-- ===== CARDS SECTION ===== -->
-  <div>
-    <h2 class="mb-4"><i class="fas fa-tractor text-gold"></i> Crop &amp; Service Hub</h2>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4 col-xl">
-        <div class="card card-hover h-100 p-3">
-          <i class="fas fa-seedling fs-1 text-gold"></i>
-          <h5 class="mt-2">Crop Information</h5>
-          <p class="text-muted">Know about best crops and cultivation methods...</p>
-          <span class="badge bg-light text-dark align-self-start">Guide</span>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 col-xl">
-        <div class="card card-hover h-100 p-3">
-          <i class="fas fa-cloud-sun fs-1 text-gold"></i>
-          <h5 class="mt-2">Weather Updates</h5>
-          <p class="text-muted">Get real-time weather updates and forecast.</p>
-          <span class="badge bg-light text-dark align-self-start">Live</span>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 col-xl">
-        <div class="card card-hover h-100 p-3">
-          <i class="fas fa-chart-line fs-1 text-gold"></i>
-          <h5 class="mt-2">Market Prices</h5>
-          <p class="text-muted">Live mandi prices and price trends.</p>
-          <span class="badge bg-light text-dark align-self-start">Today</span>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 col-xl">
-        <div class="card card-hover h-100 p-3">
-          <i class="fas fa-robot fs-1 text-gold"></i>
-          <h5 class="mt-2">AI Crop Advisor</h5>
-          <p class="text-muted">Get AI based crop recommendations.</p>
-          <span class="badge bg-light text-dark align-self-start">Smart</span>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 col-xl">
-        <div class="card card-hover h-100 p-3">
-          <i class="fas fa-file-signature fs-1 text-gold"></i>
-          <h5 class="mt-2">Government Schemes</h5>
-          <p class="text-muted">Information about latest schemes and subsidies.</p>
-          <span class="badge bg-light text-dark align-self-start">New</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== AI SECTION ===== -->
-  <div class="my-5">
-    <div class="ai-section p-4 text-white">
-      <h5><i class="fas fa-brain text-gold"></i> NEW AI FEATURE</h5>
-      <h2 class="display-6 fw-bold text-gold">Apni Fasal Ki Bimari Pehchane</h2>
-      <p class="fs-5">Khaad ya kide se fasal kharab ho rahi hai? Pareshan na hon! Bas apne bimar paudhe ya patte ki ek saaf photo kheche aur yahan upload karein. Hamara AI turant bimari ka naam aur usko thik karne ka sasta ilaj bata dega.</p>
-      <div class="ai-upload-box text-center">
-        <i class="fas fa-camera fs-1 text-gold"></i>
-        <p class="mt-2"><strong>Photo Upload Karein</strong><br/>Format: JPG, PNG (Max: 5MB)</p>
-        <input type="file" accept=".jpg,.jpeg,.png" class="form-control d-inline-block w-auto mx-auto" style="max-width:300px;"/>
-        <p class="mt-2"><i class="fas fa-spinner fa-spin"></i> AI Scanning Fasal...</p>
-      </div>
-    </div>
-  </div>
-
   <!-- ===== DASHBOARD ===== -->
   <div class="my-5">
     <h2 class="mb-4"><i class="fas fa-chart-pie text-gold"></i> Today's Agri Dashboard</h2>
@@ -205,18 +120,32 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 p-3 border-0 shadow-sm">
-          <h5><i class="fas fa-robot text-gold"></i> AI Crop Recommendation</h5>
-          <p><strong>Season:</strong> Kharif</p>
-          <p><strong>Soil:</strong> Loamy</p>
-          <div class="p-3 rounded-3 text-center fw-bold" style="background: var(--gold); color: #1e2f1e;">
-            🌾 Paddy, Soybean, Maize
-          </div>
+         <div class="col-md-6 col-lg-4 col-xl">
+        <div class="card card-hover h-100 p-3">
+          <i class="fas fa-seedling fs-1 text-gold"></i>
+          <h5 class="mt-2">Crop Information</h5>
+          <p class="text-muted">Know about best crops and cultivation methods...</p>
+          <span class="badge bg-light text-dark align-self-start">Guide</span>
         </div>
       </div>
     </div>
   </div>
+  
+  <!-- ===== AI SECTION ===== -->
+  <div class="my-5">
+    <div class="ai-section p-4 text-white">
+      <h5><i class="fas fa-brain text-gold"></i> NEW AI FEATURE</h5>
+      <h2 class="display-6 fw-bold text-gold">Apni Fasal Ki Bimari Pehchane</h2>
+      <p class="fs-5">Khaad ya kide se fasal kharab ho rahi hai? Pareshan na hon! Bas apne bimar paudhe ya patte ki ek saaf photo kheche aur yahan upload karein. Hamara AI turant bimari ka naam aur usko thik karne ka sasta ilaj bata dega.</p>
+      <div class="ai-upload-box text-center">
+        <i class="fas fa-camera fs-1 text-gold"></i>
+        <p class="mt-2"><strong>Photo Upload Karein</strong><br/>Format: JPG, PNG (Max: 5MB)</p>
+        <input type="file" accept=".jpg,.jpeg,.png" class="form-control d-inline-block w-auto mx-auto" style="max-width:300px;"/>
+        <p class="mt-2"><i class="fas fa-spinner fa-spin"></i> AI Scanning Fasal...</p>
+      </div>
+    </div>
+  </div>
+
 
   <!-- ===== TESTIMONIAL CAROUSEL ===== -->
   <div class="my-5">
@@ -353,7 +282,6 @@
         </div>
       </div>
     </div>
-  </div>
 
 </div>
 

@@ -17,7 +17,7 @@ class CropController extends Controller
      */
     public function index(Request $request)
     {
-      $data =Crop::get();
+        $data = Crop::get();
 
         return view('admin.crop.index', compact('data'));
     }
@@ -77,69 +77,69 @@ class CropController extends Controller
      * Show the form for editing the specified category.
      */
     public function edit($id)
-{
-    $crop = Crop::findOrFail($id);
+    {
+        $crop = Crop::findOrFail($id);
 
-    $parentCategories = Category::where('status', 1)
-        ->whereNotNull('parent_id')
-        ->orderBy('name')
-        ->get();
+        $parentCategories = Category::where('status', 1)
+            ->whereNotNull('parent_id')
+            ->orderBy('name')
+            ->get();
 
-    return view('admin.crop.edit', compact('crop', 'parentCategories'));
-}
+        return view('admin.crop.edit', compact('crop', 'parentCategories'));
+    }
 
     /**
      * Update the specified category.
      */
-   public function update(Request $request, $id)
-{
-    $crop = Crop::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $crop = Crop::findOrFail($id);
 
-    $request->validate([
-        'title' => 'required',
-        'content' => 'nullable',
-        'categories_id' => 'nullable',
-        'status' => 'required',
-        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-    ]);
+        $request->validate([
+            'title' => 'required',
+            'content' => 'nullable',
+            'categories_id' => 'nullable',
+            'status' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-    $crop->title = $request->title;
-    $crop->slug = Str::slug($request->title);
-    $crop->content = $request->content;
-    $crop->categories_id = $request->categories_id;
-    $crop->status = $request->status;
+        $crop->title = $request->title;
+        $crop->slug = Str::slug($request->title);
+        $crop->content = $request->content;
+        $crop->categories_id = $request->categories_id;
+        $crop->status = $request->status;
 
-    if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
+
+            if ($crop->image && Storage::disk('public')->exists($crop->image)) {
+                Storage::disk('public')->delete($crop->image);
+            }
+
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+
+            $crop->image = $image->storeAs('crop', $filename, 'public');
+        }
+
+        $crop->save();
+
+        return redirect('/admin/crop')->with('success', 'Crop updated successfully.');
+    }
+    /**
+     * Remove the specified category.
+     */
+    public function destroy($id)
+    {
+        $crop = Crop::findOrFail($id);
 
         if ($crop->image && Storage::disk('public')->exists($crop->image)) {
             Storage::disk('public')->delete($crop->image);
         }
 
-        $image = $request->file('image');
-        $filename = time().'_'.$image->getClientOriginalName();
+        $crop->delete();
 
-        $crop->image = $image->storeAs('crop', $filename, 'public');
+        return redirect('/admin/crop')->with('success', 'Crop deleted successfully.');
     }
-
-    $crop->save();
-
-    return redirect('/admin/crop')->with('success', 'Crop updated successfully.');
-}
-    /**
-     * Remove the specified category.
-     */
-   public function destroy($id)
-{
-    $crop = Crop::findOrFail($id);
-
-    if ($crop->image && Storage::disk('public')->exists($crop->image)) {
-        Storage::disk('public')->delete($crop->image);
-    }
-
-    $crop->delete();
-
-    return redirect('/admin/crop')->with('success', 'Crop deleted successfully.');
-}
 
     /**
      * Update category status.
@@ -163,5 +163,15 @@ class CropController extends Controller
             'message' => 'Status updated successfully!',
             'status' => $category->status
         ]);
+    }
+
+    public function toggleHome($id)
+    {
+        $crop = Crop::findOrFail($id);
+
+        $crop->is_home = $crop->is_home == 1 ? 0 : 1;
+        $crop->save();
+
+        return redirect()->back()->with('success', 'Home status updated successfully.');
     }
 }

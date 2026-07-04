@@ -34,6 +34,8 @@ Route::get('/schame', [HomeController::class, 'schame']);
 Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/crop', [HomeController::class, 'crop']);
 Route::get('/details/{slug}', [HomeController::class, 'detailes']);
+Route::get('/categories', [HomeController::class, 'categories']);
+
 
 // Authentication Routes
 Route::post('/register', [Authcontroller::class, 'register'])->name('register');
@@ -47,19 +49,26 @@ Route::get('/logout', [Authcontroller::class, 'logout'])->name('logout');
 // Admin Routes - Only for role=1 (Admin)
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [DashController::class, 'index']);
-    
+
     // Categories
     Route::get('/admin/categories', [CategoryController::class, 'index']);
     Route::get('/admin/categories/create', [CategoryController::class, 'create']);
     Route::post('/admin/categories/post', [CategoryController::class, 'store'])->name('admin.categories.post');
+    Route::get('/admin/categories/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+
+    Route::post('/admin/categories/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
+    Route::get('/admin/categories/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.categories.delete');
 
     // Crops
+    Route::get('/admin/user', [DashController::class, 'user']);
     Route::get('/admin/crop', [CropController::class, 'index']);
     Route::get('/admin/crop/create', [CropController::class, 'create']);
     Route::post('/admin/crop/post', [CropController::class, 'store'])->name('admin.crop.post');
     Route::get('/admin/crop/edit/{id}', [CropController::class, 'edit'])->name('admin.crop.edit');
     Route::post('/admin/crop/update/{id}', [CropController::class, 'update'])->name('admin.crop.update');
     Route::get('/admin/crop/delete/{id}', [CropController::class, 'destroy'])->name('admin.crop.delete');
+    Route::get('/admin/crop/home/{id}', [CropController::class, 'toggleHome'])
+    ->name('admin.crop.toggleHome');
 });
 
 // User Routes - For regular users (role != 1)

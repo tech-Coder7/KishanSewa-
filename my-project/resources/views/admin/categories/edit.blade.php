@@ -6,10 +6,22 @@
         <!-- TOP BAR -->
         <div class="topbar">
             <h1>
-                <i class="fas fa-plus-circle" style="color:#7cb342; font-size:1.6rem; vertical-align:middle;"></i>
-                Create Crop
-                <span>add new farm crop</span>
+                <i class="fas fa-edit" style="color:#7cb342; font-size:1.6rem; vertical-align:middle;"></i>
+                Edit Category
+                <span>update farm category information</span>
             </h1>
+            <div class="right">
+                <div class="weather-widget">
+                    <i class="fas fa-sun"></i>
+                    <span>72°F</span>
+                    <span style="color:#5a7a6a; font-weight:400;">| Sunny</span>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." />
+                </div>
+                <div class="avatar">JD</div>
+            </div>
         </div>
 
         <!-- Flash Messages -->
@@ -36,25 +48,26 @@
             </div>
         @endif
 
-        <!-- ===== CREATE CROP FORM ===== -->
+        <!-- ===== CREATE CATEGORY FORM ===== -->
         <div class="form-card">
             <div class="form-header">
                 <div class="form-header-left">
                     <i class="fas fa-seedling"></i>
                     <div>
-                        <h3>Crop Details</h3>
-                        <p>Fill in the information below to create a new crop</p>
+                        <h3>Category Details</h3>
+                        <p>Fill in the information below to create a new category</p>
                     </div>
                 </div>
                 <div class="form-header-right">
-                    <a href="{{ url('admin/crop') }}" class="btn-secondary">
+                    <a href="{{ url('admin/categories') }}" class="btn-secondary">
                         <i class="fas fa-arrow-left"></i> Back to List
                     </a>
                 </div>
             </div>
 
-            <form action="{{ route('admin.crop.post') }}" method="POST" class="category-form" enctype="multipart/form-data">
+            <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" class="category-form">
                 @csrf
+                @method('POST')
 
                 <div class="form-body">
                     <!-- Two Column Layout -->
@@ -63,49 +76,28 @@
                         <div class="form-col">
                             <!-- Basic Information -->
                             <div class="form-group-box">
-                               
-                                 
+                                <div class="group-label">
+                                    <i class="fas fa-info-circle" style="color:#7cb342;"></i>
+                                    <span>Basic Information</span>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="parent_id" class="form-label">
-                                            Parent Category
-                                        </label>
-                                        <div class="input-icon">
-                                            <i class="fas fa-level-up-alt"></i>
-                                            <select id="parent_id" name="categories_id"
-                                                class="form-control @error('parent_id') is-invalid @enderror">
-                                                <option value="">— No Parent (Top Level) —</option>
-                                                @foreach($parentCategories ?? [] as $parent)
-                                                    <option value="{{ $parent->id }}" {{ old('parent_id') == $parent->id ? 'selected' : '' }}>
-                                                        {{ $parent->name }}
-                                                        @if($parent->parent)
-                                                            ({{ $parent->parent->name }})
-                                                        @endif
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('parent_id')
-                                            <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                        <small class="form-text">Select a parent category to create a sub-category.</small>
-                                    </div>
-                                
                                 <div class="form-group">
-                                    <label for="title" class="form-label">
-                                        Title
+                                    <label for="name" class="form-label required">
+                                        Category Name
                                     </label>
                                     <div class="input-icon">
-                                        <i class="fas fa-link"></i>
-                                        <input type="text" id="title" name="title"
-                                            class="form-control @error('title') is-invalid @enderror"
-                                            placeholder="Title" value="{{ old('title') }}">
+                                        <i class="fas fa-tag"></i>
+                                        <input type="text" id="name" name="name"
+                                            class="form-control @error('name') is-invalid @enderror"
+                                            placeholder="Enter category name (e.g., Crops, Livestock)"
+                                            value="{{ $category->name }}" required autofocus>
                                     </div>
-                                    @error('title')
+                                    @error('name')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
-                                  
+                                    <small class="form-text">The name should be unique and descriptive.</small>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="slug" class="form-label">
                                         Slug (URL)
@@ -114,17 +106,19 @@
                                         <i class="fas fa-link"></i>
                                         <input type="text" id="slug" name="slug"
                                             class="form-control @error('slug') is-invalid @enderror"
-                                            placeholder="auto-generated from name" value="{{ old('slug') }}">
+                                            placeholder="auto-generated from name" value="{{ $category->slug }}">
                                     </div>
                                     @error('slug')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                     <small class="form-text">Leave blank to auto-generate from the name.</small>
                                 </div>
+
+
                             </div>
 
-                            <!-- Category Hierarchy -->
-                            <!-- <div class="form-group-box">
+                            <!-- Parent Category -->
+                            <div class="form-group-box">
                                 <div class="group-label">
                                     <i class="fas fa-sitemap" style="color:#7cb342;"></i>
                                     <span>Category Hierarchy</span>
@@ -136,12 +130,11 @@
                                     </label>
                                     <div class="input-icon">
                                         <i class="fas fa-level-up-alt"></i>
-                                        <select id="parent_id" 
-                                                name="parent_id" 
-                                                class="form-control @error('parent_id') is-invalid @enderror">
+                                        <select id="parent_id" name="parent_id"
+                                            class="form-control @error('parent_id') is-invalid @enderror">
                                             <option value="">— No Parent (Top Level) —</option>
                                             @foreach($parentCategories ?? [] as $parent)
-                                                <option value="{{ $parent->id }}" {{ old('parent_id') == $parent->id ? 'selected' : '' }}>
+                                                <option value="{{ $parent->id }}" {{ $category->parent_id == $parent->id ? 'selected' : '' }}>
                                                     {{ $parent->name }}
                                                     @if($parent->parent)
                                                         ({{ $parent->parent->name }})
@@ -155,7 +148,7 @@
                                     @enderror
                                     <small class="form-text">Select a parent category to create a sub-category.</small>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
 
                         <!-- Right Column -->
@@ -175,12 +168,13 @@
                                         <i class="fas fa-circle"></i>
                                         <select id="status" name="status"
                                             class="form-control @error('status') is-invalid @enderror">
-                                            <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>
+                                            <option value="1" {{ $category->status == '1' ? 'selected' : '' }}>
                                                 ✅ Active
                                             </option>
-                                            <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>
+                                            <option value="0" {{ $category->status == '0' ? 'selected' : '' }}>
                                                 ❌ Inactive
                                             </option>
+                                          
                                         </select>
                                     </div>
                                     @error('status')
@@ -189,64 +183,27 @@
                                     <small class="form-text">Set the visibility and availability of this category.</small>
                                 </div>
 
-                                <!-- Image Field - Replacing Sort Order -->
                                 <div class="form-group">
-                                    <label for="image" class="form-label">
-                                        <i class="fas fa-image"></i> Image
+                                    <label for="sort_order" class="form-label">
+                                        Sort Order
                                     </label>
-                                    <div class="file-upload-wrapper">
-                                        <div class="file-upload-area" onclick="document.getElementById('image').click()">
-                                            <i class="fas fa-cloud-upload-alt"></i>
-                                            <p>Click to upload or drag & drop</p>
-                                            <span>JPG, PNG, GIF, WebP up to 2MB</span>
-                                        </div>
-                                        <input type="file" id="image" name="image"
-                                            class="form-control @error('image') is-invalid @enderror" accept="image/*"
-                                            style="display:none;" onchange="previewImage(this)">
-                                        <div id="imagePreview" style="display:none;margin-top:0.8rem;">
-                                            <img id="previewImg" src="#" alt="Preview"
-                                                style="max-width:200px;max-height:150px;border-radius:8px;border:1px solid #dce8e0;object-fit:cover;">
-                                            <button type="button" onclick="removeImage()"
-                                                style="display:block;margin-top:0.4rem;background:#ffebee;border:none;color:#c62828;padding:0.3rem 1rem;border-radius:30px;font-size:0.75rem;cursor:pointer;transition:0.2s;">
-                                                <i class="fas fa-times"></i> Remove Image
-                                            </button>
-                                        </div>
+                                    <div class="input-icon">
+                                        <i class="fas fa-sort-numeric-down"></i>
+                                        <input type="number" id="sort_order" name="sort_order"
+                                            class="form-control @error('sort_order') is-invalid @enderror" placeholder="0"
+                                            value="{{ old('sort_order', $category->sort_order) }}" min="0">
                                     </div>
-                                    @error('image')
+                                    @error('sort_order')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
-                                    <small class="form-text">Upload a representative image for this crop.</small>
+                                    <small class="form-text">Lower numbers appear first in lists.</small>
                                 </div>
+
                             </div>
-
-                            <!-- Meta Information -->
-
 
 
                         </div>
                     </div>
-                    <div class="from-row">
-                        <div class="form-group-box" id="container">
-                            <div class="group-label">
-                                <i class="fas fa-code" style="color:#7cb342;"></i>
-                                <span>Content</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="content" class="form-label">
-                                    <i class="fas fa-align-left"></i> Content
-                                </label>
-                                <textarea id="editor" name="content"
-                                    class="form-control @error('content') is-invalid @enderror" rows="6"
-                                    placeholder="Enter detailed content about this crop...">{{ old('content') }}</textarea>
-                                @error('content')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                                <small class="form-text">Detailed description or content about the crop.</small>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <!-- Form Actions -->
@@ -255,11 +212,14 @@
                         <span class="required-text"><span class="required-star">*</span> Required fields</span>
                     </div>
                     <div class="form-footer-right">
-                        <a href="{{ url('admin/crop') }}" class="btn-cancel">
+                        <a href="{{ url('admin/categories') }}" class="btn-cancel">
                             <i class="fas fa-times"></i> Cancel
                         </a>
+                        <button type="reset" class="btn-reset">
+                            <i class="fas fa-undo"></i> Reset
+                        </button>
                         <button type="submit" class="btn-submit">
-                            <i class="fas fa-save"></i> Create Crop
+                            <i class="fas fa-save"></i> Update Category
                         </button>
                     </div>
                 </div>
@@ -288,25 +248,11 @@
             this.dataset.generated = false;
         });
 
-        // Image preview
-        function previewImage(input) {
-            const preview = document.getElementById('imagePreview');
-            const img = document.getElementById('previewImg');
-
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    img.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        function removeImage() {
-            document.getElementById('image').value = '';
-            document.getElementById('imagePreview').style.display = 'none';
-            document.getElementById('previewImg').src = '#';
+        // Update icon preview
+        function updateIconPreview() {
+            const select = document.getElementById('icon');
+            const preview = document.getElementById('iconPreview');
+            preview.className = 'fas ' + select.value;
         }
     </script>
 
@@ -395,7 +341,6 @@
             border: 1px solid #eef3ea;
             border-radius: 14px;
             padding: 1.5rem;
-            /* border: 2px solid red; */
         }
 
         .group-label {
@@ -408,18 +353,9 @@
             margin-bottom: 1.2rem;
             padding-bottom: 0.6rem;
             border-bottom: 2px solid #eef3ea;
-            /* border: 2px solid black; */
-
         }
 
-        /* #container{
-            border: 2px solid blue;
-            /* width: 100%; */
-        /* position: absolute;
-            display: flex;
-            align-items: center;
-        } */
-        */ .group-label i {
+        .group-label i {
             font-size: 1.1rem;
         }
 
@@ -515,43 +451,33 @@
             padding-right: 36px;
         }
 
-        /* File Upload Styles */
-        .file-upload-wrapper {
-            width: 100%;
+        /* Icon Selector */
+        .icon-selector-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
-        .file-upload-area {
+        .icon-preview-box {
+            width: 48px;
+            height: 48px;
             border: 2px dashed #dce8e0;
             border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.2s;
-            background: #fafcfa;
-        }
-
-        .file-upload-area:hover {
-            border-color: #7cb342;
-            background: #f0f8ee;
-            transform: translateY(-2px);
-        }
-
-        .file-upload-area i {
-            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             color: #7cb342;
-            display: block;
-            margin-bottom: 0.5rem;
+            background: #f8fbf7;
+            flex-shrink: 0;
         }
 
-        .file-upload-area p {
-            margin: 0;
-            font-weight: 500;
-            color: #1a3a2b;
+        .icon-preview-box i {
+            font-size: 1.8rem;
         }
 
-        .file-upload-area span {
-            font-size: 0.75rem;
-            color: #5a7a6a;
+        .icon-selector-wrapper .input-icon {
+            flex: 1;
         }
 
         /* Form Footer */
@@ -706,8 +632,13 @@
                 justify-content: center;
             }
 
-            .file-upload-area {
-                padding: 1rem;
+            .icon-selector-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .icon-preview-box {
+                align-self: center;
             }
         }
     </style>

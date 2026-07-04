@@ -196,90 +196,47 @@
         <div class="topbar">
             <h1>
                 <i class="fas fa-tractor" style="color:#7cb342; font-size:1.6rem; vertical-align:middle;"></i>
-                Categories
-                <span>manage farm categories</span>
+                User
+                <span>manage farm User</span>
             </h1>
-            <div class="right">
-                <div class="weather-widget">
-                    <i class="fas fa-sun"></i>
-                    <span>72°F</span>
-                    <span style="color:#5a7a6a; font-weight:400;">| Sunny</span>
-                </div>
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search categories..." />
-                </div>
-                <div class="avatar">JD</div>
-            </div>
+
         </div>
 
-        <!-- ===== CREATE CATEGORY FORM (inline) ===== -->
-        <div class="create-category-box">
-            <div class="field-group">
-                <label for="catName">Category name</label>
-                <input type="text" id="catName" placeholder="e.g. Grain, Vegetable, Livestock" />
-            </div>
-            <div class="field-group">
-                <label for="catParent">Parent category</label>
-                <select id="catParent">
-                    <option value="">— none (top level) —</option>
-                    <option value="1">Crops</option>
-                    <option value="2">Livestock</option>
-                    <option value="3">Equipment</option>
-                </select>
-            </div>
-            <div class="field-group">
-                <label for="catStatus">Status</label>
-                <select id="catStatus">
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="pending">Pending</option>
-                </select>
-            </div>
-            <a href="/admin/categories/create" class="btn-submit"><i class="fas fa-plus-circle"></i> Create</a>
-        </div>
-
+     
+      
         <!-- ===== CATEGORIES LIST ===== -->
         <div class="categories-header">
-            <h2><i class="fas fa-list-ul"></i> All categories</h2>
-            <span class="text-muted">showing 5 entries</span>
+            <h2><i class="fas fa-list-ul"></i> All Users</h2>
+         
         </div>
         <pre>
 
-            <!-- {{ dump($categories) }} -->
-        </pre>
+
+            </pre>
         <div class="table-card">
-            <table>
+            <table id="cropTable">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Parent</th>
-                        <th>Status</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
                         <th>Created at</th>
-                        <th>Updated at</th>
-                        <th style="text-align:right;">Actions</th>
+
+                    
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ($categories as $row)
+                    @foreach ($data as $row)
 
                         <tr>
                             <td><strong>{{ $row->id }}</strong></td>
-                            <td><strong>{{ $row->name }}</strong></td>
-                            <td><span class="parent-badge">{{ $row->parent ? $row->parent->name : "" }}</span></td>
-                            <td><span class="badge-status active">Active</span></td>
+                            <td>{{ $row->name }}</td>
+                            <td>{{ $row->email }}</td>
+                            <td>{{ $row->mobile }}</td>
                             <td>{{ $row->created_at }}</td>
-                            <td>{{ $row->updated_at }}</td>
-
-                            <td style="text-align:right;">
-                                <div class="actions" style="justify-content:flex-end;">
-                                    <a href="/admin/categories/edit/{{ $row->id }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                    <a href="/admin/categories/delete/{{ $row->id }}" class="danger" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                          </tr>
 
 
                     @endforeach
@@ -288,19 +245,10 @@
                 </tbody>
             </table>
 
-            <div
-                style="padding: 0.8rem 0 0.2rem 0; font-size:0.75rem; color:#8a9a8a; border-top:1px solid #f0f5ee; margin-top:0.5rem;">
-                <i class="fas fa-database"></i> 5 categories · last updated today
-            </div>
+
         </div>
 
-        <!-- Stats summary -->
-        <div style="margin-top: 1.2rem; font-size:0.8rem; color:#5a7a6a; display:flex; gap:1.5rem; flex-wrap:wrap;">
-            <span><i class="fas fa-check-circle" style="color:#2e7d32;"></i> Active: 3</span>
-            <span><i class="fas fa-minus-circle" style="color:#c62828;"></i> Inactive: 1</span>
-            <span><i class="fas fa-clock" style="color:#e65100;"></i> Pending: 1</span>
-            <span><i class="fas fa-sitemap"></i> Top-level: 3 · Child: 2</span>
-        </div>
+
 
     </main>
 

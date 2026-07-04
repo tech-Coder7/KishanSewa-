@@ -218,7 +218,7 @@
 
             </pre>
         <div class="table-card">
-            <table>
+            <table id="cropTable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -227,6 +227,7 @@
                         <th>CAT</th>
                         <th>Status</th>
                         <th>Created at</th>
+                        <th>Is Home</th>
 
                         <th style="text-align:right;">Actions</th>
                     </tr>
@@ -239,9 +240,25 @@
                             <td><strong>{{ $row->id }}</strong></td>
                             <td><img width="30" src="{{ asset('storage') }}/{{ $row->image }}"></img></td>
                             <td>{{ $row->title }}</td>
-                            <td><span class="parent-badge">{{ $row->parent ? $row->parent->name : "" }}</span></td>
+                            <td><span class="parent-badge">{{ $row->category ? $row->category->name : "" }}</span></td>
+                            <td><span class="parent-badge">{{ $row->status ? 'Active' : 'Inactive' }}</span></td>
                             <td>{{ $row->created_at }}</td>
-                            <td></td>
+                            <td>
+    @if($row->is_home)
+        <a href="{{ route('admin.crop.toggleHome', $row->id) }}"
+           class="badge bg-success text-decoration-none"
+           onclick="return confirm('Remove from Home?')">
+            True
+        </a>
+    @else
+        <a href="{{ route('admin.crop.toggleHome', $row->id) }}"
+           class="badge bg-danger text-decoration-none"
+           onclick="return confirm('Show on Home?')">
+            False
+        </a>
+    @endif
+</td>
+                           
 
                             <td style="text-align:right;">
                                 <div class="actions" style="justify-content:flex-end;">

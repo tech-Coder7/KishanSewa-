@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Models\Category;
+use Illuminate\Support\Facades\View;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,8 +18,15 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        //
-    }
+
+
+public function boot(): void
+{
+    View::composer('*', function ($view) {
+        $view->with('categories', Category::where('status', 1)
+            ->whereNull('parent_id')
+            ->orderBy('name')
+            ->get());
+    });
+}
 }

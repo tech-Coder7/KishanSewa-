@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
     <style>
         * {
             margin: 0;
@@ -580,7 +581,7 @@
             <a href="/admin/dashboard" class="active"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
             <a href="/admin/categories"><i class="fas fa-tractor"></i><span>Categories</span></a>
             <a href="/admin/crop"><i class="fas fa-chart-line"></i><span>Crop </span></a>
-            <a href="#"><i class="fas fa-cloud-sun-rain"></i><span>Weather</span></a>
+          <a href="#"><i class="fas fa-users"></i><span>Users</span></a>
 
             <a href="#"><i class="fas fa-cog"></i><span>Settings</span></a>
         </nav>
@@ -595,16 +596,29 @@
 
     <!-- ===== CHARTS.JS ===== -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
-        </script>
+    </script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
 
-        <script>
-            ClassicEditor
-                .create(document.querySelector('#editor'))
-                .catch(error => {
-                    console.error(error);
-                });
-        </script>
+    <script>
+        $(document).ready(function () {
+            $('#cropTable').DataTable({
+                responsive: true,
+                pageLength: 10,
+                ordering: true,
+                searching: true,
+                lengthMenu: [10, 25, 50, 100]
+            });
+        });
+    </script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
     <script>
         // ===== BAR CHART: Yield by Field =====
         const yieldCtx = document.getElementById('yieldChart').getContext('2d');

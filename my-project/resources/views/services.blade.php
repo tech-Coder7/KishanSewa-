@@ -177,7 +177,18 @@
   <!-- ===== SERVICES GRID ===== -->
   <div class="row g-4">
 
-    <!-- 1. AI Crop Advisor -->
+
+  
+    <!-- 1. Market Prices -->
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrap"><i class="fas fa-chart-line"></i></div>
+        <h5>Market Prices</h5>
+        <p>मंडी भाव, ट्रेंड और सही समय पर बेचने की जानकारी।</p>
+      </div>
+    </div>
+
+    <!-- 2. AI Crop Advisor -->
     <div class="col-md-6 col-lg-4">
       <div class="service-card">
         <div class="icon-wrap"><i class="fas fa-robot"></i></div>
@@ -186,7 +197,7 @@
       </div>
     </div>
 
-    <!-- 2. Weather Updates -->
+    <!-- 3. Weather Updates -->
     <div class="col-md-6 col-lg-4">
       <div class="service-card">
         <div class="icon-wrap"><i class="fas fa-cloud-sun"></i></div>
@@ -195,14 +206,6 @@
       </div>
     </div>
 
-    <!-- 3. Market Prices -->
-    <div class="col-md-6 col-lg-4">
-      <div class="service-card">
-        <div class="icon-wrap"><i class="fas fa-chart-line"></i></div>
-        <h5>Market Prices</h5>
-        <p>मंडी भाव, ट्रेंड और सही समय पर बेचने की जानकारी।</p>
-      </div>
-    </div>
 
     <!-- 4. Soil Testing -->
     <div class="col-md-6 col-lg-4">
@@ -212,25 +215,6 @@
         <p>मिट्टी की जाँच, पोषक तत्वों की जानकारी और सुझाव।</p>
       </div>
     </div>
-
-    <!-- 5. Crop Doctor -->
-    <div class="col-md-6 col-lg-4">
-      <div class="service-card">
-        <div class="icon-wrap"><i class="fas fa-user-md"></i></div>
-        <h5>Crop Doctor</h5>
-        <p>फसल की समस्या पहचानें और विशेषज्ञ से सलाह लें।</p>
-      </div>
-    </div>
-
-    <!-- 6. Drone Spray -->
-    <div class="col-md-6 col-lg-4">
-      <div class="service-card">
-        <div class="icon-wrap"><i class="fas fa-drone"></i></div>
-        <h5>Drone Spray</h5>
-        <p>ड्रोन से खेतों में दवा और खाद छिड़काव की सुविधा।</p>
-      </div>
-    </div>
-
   </div>
 
   <!-- ===== EXTRA NOTE ===== -->
