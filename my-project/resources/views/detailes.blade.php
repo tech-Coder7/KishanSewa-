@@ -142,7 +142,15 @@
                     <div class="hero-image">
                         <img src="{{ asset('storage/' . $data->image) }}">
                     </div>
-
+                    <!-- ShareThis BEGINS -->
+                    <div class="sharethis-share-buttons" data-type="inline-share-buttons">
+                        <span data-network="facebook"></span>
+                        <span data-network="twitter"></span>
+                        <span data-network="linkedin"></span>
+                        <span data-network="email"></span>
+                        <span data-network="sharethis"></span>
+                    </div>
+                    <!-- ShareThis ENDS -->
                     <div class="crop-content">
 
                         <span class="date-badge">
@@ -167,21 +175,21 @@
                     <h3 class="section-title">
                         🌾 Related Crops
                     </h3>
-                        @foreach ($crop as $p )
+                    @foreach ($crop as $p)
 
                         <div class="related-item">
 
-                            <img src="{{ asset('storage/' . $p->image) }}"/>
+                            <img src="{{ asset('storage/' . $p->image) }}" />
 
                             <div>
                                 <h5><a href="/details/{{ $p->slug }}">{{ $p->title }}</a></h5>
-                            {!! \Illuminate\Support\Str::words(strip_tags($p->content), 5, '...') !!}
+                                {!! \Illuminate\Support\Str::words(strip_tags($p->content), 5, '...') !!}
                             </div>
 
                         </div>
-                        @endforeach
+                    @endforeach
 
-                
+
 
                 </div>
 
@@ -190,5 +198,6 @@
         </div>
 
     </div>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js" defer></script>
 
 @endsection
