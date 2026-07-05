@@ -182,59 +182,27 @@
 
   <!-- ===== SCHEMES GRID ===== -->
   <div class="row g-4">
-
-    <!-- 1. PM-KISAN -->
-    <div class="col-md-6 col-lg-3">
-      <div class="scheme-card">
-        <div class="scheme-icon"><i class="fas fa-hand-holding-usd"></i></div>
-        <h4>PM-KISAN</h4>
-        <span class="badge-status"><i class="fas fa-check-circle"></i> Active</span>
-        <p class="text-muted mt-2">Pradhan Mantri Kisan Samman Nidhi – har saal ₹6,000 ki sahayata.</p>
-        <a href="https://pmkisan.gov.in/" target="_blank" class="btn-visit">
-          <i class="fas fa-external-link-alt me-2"></i> Official Website
-        </a>
+    @forelse($schemes as $scheme)
+      <div class="col-md-6 col-lg-3">
+        <div class="scheme-card">
+          <div class="scheme-icon">
+            <i class="{{ $scheme->icon ?? 'fas fa-file-invoice' }}"></i>
+          </div>
+          <h4>{{ $scheme->title }}</h4>
+          <span class="badge-status">
+            <i class="fas fa-check-circle"></i> {{ $scheme->badge ?? 'Active' }}
+          </span>
+          <p class="text-muted mt-2">{{ $scheme->description }}</p>
+          <a href="{{ $scheme->link }}" target="_blank" class="btn-visit">
+            <i class="fas fa-external-link-alt me-2"></i> Official Website
+          </a>
+        </div>
       </div>
-    </div>
-
-    <!-- 2. Fasal Bima -->
-    <div class="col-md-6 col-lg-3">
-      <div class="scheme-card">
-        <div class="scheme-icon"><i class="fas fa-shield-alt"></i></div>
-        <h4>Fasal Bima</h4>
-        <span class="badge-status"><i class="fas fa-check-circle"></i> Active</span>
-        <p class="text-muted mt-2">Pradhan Mantri Fasal Bima Yojana – fasal ke nuksaan ka bima.</p>
-        <a href="https://pmfby.gov.in/" target="_blank" class="btn-visit">
-          <i class="fas fa-external-link-alt me-2"></i> Official Website
-        </a>
+    @empty
+      <div class="col-12 text-center py-5">
+        <p class="text-muted">No government schemes are currently registered.</p>
       </div>
-    </div>
-
-    <!-- 3. KUSUM -->
-    <div class="col-md-6 col-lg-3">
-      <div class="scheme-card">
-        <div class="scheme-icon"><i class="fas fa-solar-panel"></i></div>
-        <h4>KUSUM</h4>
-        <span class="badge-status"><i class="fas fa-check-circle"></i> Active</span>
-        <p class="text-muted mt-2">PM-KUSUM – solar pump lagwane par 60% tak subsidy.</p>
-        <a href="https://pmkusum.mnre.gov.in/" target="_blank" class="btn-visit">
-          <i class="fas fa-external-link-alt me-2"></i> Official Website
-        </a>
-      </div>
-    </div>
-
-    <!-- 4. E-NAM -->
-    <div class="col-md-6 col-lg-3">
-      <div class="scheme-card">
-        <div class="scheme-icon"><i class="fas fa-store"></i></div>
-        <h4>E-NAM</h4>
-        <span class="badge-status"><i class="fas fa-check-circle"></i> Active</span>
-        <p class="text-muted mt-2">National Agriculture Market – online mandi platform.</p>
-        <a href="https://www.enam.gov.in/" target="_blank" class="btn-visit">
-          <i class="fas fa-external-link-alt me-2"></i> Official Website
-        </a>
-      </div>
-    </div>
-
+    @endforelse
   </div>
 
   <!-- ===== EXTRA NOTE ===== -->

@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategorySeeder::class,
             CropSeeder::class,
+            SchemeSeeder::class,
+            MandiPriceSeeder::class,
         ]);
     }
 }
