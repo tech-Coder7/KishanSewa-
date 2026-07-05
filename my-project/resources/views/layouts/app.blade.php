@@ -11,6 +11,43 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
   <link rel="stylesheet" href="{{ asset('/') }}css/style.css"/>
 
+  <!-- Google Translate custom styling -->
+  <style>
+    #google_translate_element {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    #google_translate_element select.goog-te-combo {
+      background-color: transparent !important;
+      color: #e6f0da !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      padding: 0.35rem 1rem !important;
+      font-size: 0.85rem !important;
+      font-weight: 500 !important;
+      border-radius: 50px !important;
+      outline: none !important;
+      cursor: pointer !important;
+      transition: all 0.3s !important;
+    }
+    #google_translate_element select.goog-te-combo:hover {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      border-color: #f9b81b !important;
+    }
+    /* Hide Google Translate top banner frame & Branding logos */
+    .skiptranslate iframe, .goog-te-banner-frame {
+      display: none !important;
+    }
+    body {
+      top: 0px !important;
+    }
+    .goog-logo-link {
+      display: none !important;
+    }
+    .goog-te-gadget {
+      color: transparent !important;
+      font-size: 0px !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -104,6 +141,11 @@
           <button class="btn btn-outline-light rounded-pill px-3" onclick="toggleDark()">
             <i class="fas fa-moon"></i>
           </button>
+        </li>
+
+        <!-- Google Translate Widget -->
+        <li class="nav-item ms-lg-2">
+          <div id="google_translate_element"></div>
         </li>
 
         <!-- Notification -->
@@ -208,6 +250,18 @@
     }
   });
 </script>
+
+<!-- Google Translate initialization & script loader -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,mr,ta,te,gu,kn,ml,pa,or,bn', // English + major Indian languages
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>

@@ -35,6 +35,9 @@ Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/crop', [HomeController::class, 'crop']);
 Route::get('/details/{slug}', [HomeController::class, 'detailes']);
 Route::get('/categories', [HomeController::class, 'categories']);
+Route::post('/detect-disease', [DiseaseController::class, 'detect'])->name('detect-disease');
+Route::post('/mandi/sync', [HomeController::class, 'syncMandiPrices'])->name('mandi.sync');
+Route::get('/mandi-prices', [HomeController::class, 'mandiPrices'])->name('mandi.prices');
 
 
 // Authentication Routes
