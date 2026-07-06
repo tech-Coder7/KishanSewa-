@@ -66,6 +66,7 @@
             <a class="navbar-brand" href="/" style="color: #f9e7b3; font-size: 1.9rem; font-weight: 600;">
                 <img src="{{ asset('image/kishansewa_logo_transparent.png') }}" alt="KishanSewa Logo"
                     style="height: 60px; margin-right: 10px;" />
+                KishanSewa
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
