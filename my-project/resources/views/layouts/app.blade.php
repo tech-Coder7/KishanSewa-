@@ -56,7 +56,7 @@
 <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
     <a class="navbar-brand" href="/" style="color: #f9e7b3; font-size: 1.9rem; font-weight: 600;">
-      KishanSewa 
+      <img src="{{ asset('image/logoo.png') }}" alt="KishanSewa Logo" style="height: 60px; margin-right: 10px;"/>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -173,12 +173,23 @@
       <div class="col-md-6 col-lg-3">
         <h4 style="color:#f9e7b3;">Kishan Sewa</h4>
         <p class="text-white-50">Smart Agriculture System jo desh ke kisaano ko aadhunik takneek, sahi jankari aur naye avsaron se jodkar unhe samriddh banata hai.</p>
-        <div>
-          <i class="fab fa-google social-icon"></i>
-          <i class="fab fa-facebook social-icon"></i>
-          <i class="fab fa-instagram social-icon"></i>
-          <i class="fab fa-youtube social-icon"></i>
-        </div>
+    <div>
+    <a href="https://www.google.com" target="_blank">
+        <i class="fab fa-google social-icon"></i>
+    </a>
+
+    <a href="https://www.facebook.com/" target="_blank">
+        <i class="fab fa-facebook social-icon"></i>
+    </a>
+
+    <a href="https://www.instagram.com/" target="_blank">
+        <i class="fab fa-instagram social-icon"></i>
+    </a>
+
+    <a href="https://www.youtube.com/" target="_blank">
+        <i class="fab fa-youtube social-icon"></i>
+    </a>
+</div>
       </div>
       <div class="col-md-6 col-lg-3">
         <h5 style="color:#f9e7b3;">Mukhya Links</h5>
@@ -190,8 +201,8 @@
       </div>
       <div class="col-md-6 col-lg-3">
         <h5 style="color:#f9e7b3;">Kishan Helplines</h5>
-        <p><strong>Kisan Call Center:</strong><br/>1800-180-1551 (Toll-Free)</p>
-        <p><strong>KishanSewa Support:</strong><br/>support@kishansewa.com</p>
+        <p><strong>Help Center:</strong><br/>+91 9135125154</p>
+        <p><strong>KishanSewa Support:</strong><br/>ak7503188@gmail.com</p>
       </div>
       <div class="col-md-6 col-lg-3">
         <h5 style="color:#f9e7b3;">Mobile App</h5>
