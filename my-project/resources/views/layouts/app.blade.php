@@ -187,7 +187,7 @@
     <!-- ===== MAIN WRAPPER WITH SPACING ===== -->
 
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ===== FOOTER ===== 
     <footer class="bg-dark text-white pt-5 pb-3 mt-0">
         <div class="container">
             <div class="row g-4">
@@ -238,14 +238,14 @@
             <p class="text-center text-white-50 mb-0">© 2026 KishanSewa. All Rights Reserved. Made with ❤️ for Indian
                 Farmers</p>
         </div>
-    </footer>
+    </footer>  -->
     <!-- ===== LOGIN / REGISTER MODAL ===== -->
     <!-- ===== CHATBOT FLOAT ===== -->
-    <button class="chat-float" onclick="alert('🤖 Chatbot: Namaste! Main aapki kya madad kar sakta hu?')">
+    <!-- <button class="chat-float" onclick="alert('🤖 Chatbot: Namaste! Main aapki kya madad kar sakta hu?')">
         <i class="fas fa-comment-dots fs-4 me-2"></i> Chat with AI
     </button>
-    >>>>>>> 6acb5b14b2f49986aed9e25d5829d38fc15a3b2f
-
+    >>>>>>> 6acb5b14b2f49986aed9e25d5829d38fc15a3b2f    
+-->
 
     <!-- ===== FOOTER ===== -->
     <footer class="bg-dark text-white pt-5 pb-3 mt-0">
