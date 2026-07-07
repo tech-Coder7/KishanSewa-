@@ -481,7 +481,7 @@ body {
             <div class="col-sm-6 col-lg-3">
                 <div class="team-card">
                     <div class="team-avatar">👩‍💻</div>
-                    <h5>Riya Rana</h5>
+                    <h5>Riya Kumari</h5>
                     <div class="role">UI/UX & Frontend Developer</div>
                     <p> Website ka design, user interface aur user-friendly experience banane ka kaam
                         inhone kiya hai.</p>

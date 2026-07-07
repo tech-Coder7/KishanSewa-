@@ -125,13 +125,12 @@
                             <i class="fas fa-file-signature"></i> Schemes
                         </a>
                         <!-- <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/schame"><i class="fas fa-hand-holding-usd"></i> PM-KISAN</a></li>
-            <li><a class="dropdown-item" href="/schame"><i class="fas fa-shield-alt"></i> Fasal Bima</a></li>
-            <li><a class="dropdown-item" href="/schame"><i class="fas fa-solar-panel"></i> KUSUM</a></li>
-            <li><a class="dropdown-item" href="/schame"><i class="fas fa-store"></i> E-NAM</a></li>
-          </ul> -->
+                            <li><a class="dropdown-item" href="/schame"><i class="fas fa-hand-holding-usd"></i> PM-KISAN</a></li>
+                            <li><a class="dropdown-item" href="/schame"><i class="fas fa-shield-alt"></i> Fasal Bima</a></li>
+                            <li><a class="dropdown-item" href="/schame"><i class="fas fa-solar-panel"></i> KUSUM</a></li>
+                            <li><a class="dropdown-item" href="/schame"><i class="fas fa-store"></i> E-NAM</a></li>
+                        </ul> -->
                     </li>
-
                     <!-- Contact -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/contact">
