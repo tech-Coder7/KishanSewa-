@@ -580,5 +580,4 @@ body {
     </div>
 
 </div><!-- end container -->
-
 @endsection
