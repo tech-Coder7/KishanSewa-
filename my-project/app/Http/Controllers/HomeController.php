@@ -16,43 +16,70 @@ class HomeController extends Controller
   public function index()
   {
     // 1. Fetch weather forecast (API 1)
-    $response = Http::withoutVerifying()->get(
-      'https://api.open-meteo.com/v1/forecast',
-      [
-        'latitude' => 25.609,
-        'longitude' => 85.1343,
-        'current' => 'temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,is_day',
-        'daily' => 'weather_code,temperature_2m_max,temperature_2m_min',
-        'forecast_days' => 5,
-        'timezone' => 'auto',
-      ]
-    );
+    $weather = [
+      'temperature_2m' => 28,
+      'relative_humidity_2m' => 65,
+      'wind_speed_10m' => 12,
+      'weather_code' => 1,
+      'is_day' => 1
+    ];
+    $forecast = [
+      'weather_code' => [1, 1, 2, 3, 1],
+      'temperature_2m_max' => [32, 33, 31, 30, 32],
+      'temperature_2m_min' => [24, 25, 23, 22, 24]
+    ];
 
-    $data = $response->json();
-    $weather = $data['current'];
-    $forecast = $data['daily'];
+    try {
+      $response = Http::withoutVerifying()->timeout(2.5)->get(
+        'https://api.open-meteo.com/v1/forecast',
+        [
+          'latitude' => 25.609,
+          'longitude' => 85.1343,
+          'current' => 'temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,is_day',
+          'daily' => 'weather_code,temperature_2m_max,temperature_2m_min',
+          'forecast_days' => 5,
+          'timezone' => 'auto',
+        ]
+      );
+
+      if ($response->successful()) {
+        $data = $response->json();
+        if (!empty($data['current'])) {
+          $weather = $data['current'];
+        }
+        if (!empty($data['daily'])) {
+          $forecast = $data['daily'];
+        }
+      }
+    } catch (\Exception $e) {
+      // Handled gracefully with fallback values above
+    }
 
     // 2. Fetch Soil forecast parameters (API 2)
-    $soilResponse = Http::withoutVerifying()->get(
-      'https://api.open-meteo.com/v1/forecast',
-      [
-        'latitude' => 25.609,
-        'longitude' => 85.1343,
-        'hourly' => 'soil_temperature_0_to_7cm,soil_moisture_0_to_7cm',
-        'forecast_days' => 1,
-        'timezone' => 'auto',
-      ]
-    );
-
     $soilData = [
       'temperature' => 26.8, // Fallback default
       'moisture' => 0.32    // Fallback default
     ];
 
-    if ($soilResponse->successful()) {
-      $soilJson = $soilResponse->json();
-      $soilData['temperature'] = $soilJson['hourly']['soil_temperature_0_to_7cm'][0] ?? 26.8;
-      $soilData['moisture'] = $soilJson['hourly']['soil_moisture_0_to_7cm'][0] ?? 0.32;
+    try {
+      $soilResponse = Http::withoutVerifying()->timeout(2.5)->get(
+        'https://api.open-meteo.com/v1/forecast',
+        [
+          'latitude' => 25.609,
+          'longitude' => 85.1343,
+          'hourly' => 'soil_temperature_0_to_7cm,soil_moisture_0_to_7cm',
+          'forecast_days' => 1,
+          'timezone' => 'auto',
+        ]
+      );
+
+      if ($soilResponse->successful()) {
+        $soilJson = $soilResponse->json();
+        $soilData['temperature'] = $soilJson['hourly']['soil_temperature_0_to_7cm'][0] ?? 26.8;
+        $soilData['moisture'] = $soilJson['hourly']['soil_moisture_0_to_7cm'][0] ?? 0.32;
+      }
+    } catch (\Exception $e) {
+      // Handled gracefully with fallback values above
     }
 
     // 3. Fetch and parse Krishi Jagran Agriculture News RSS Feed (API 3)

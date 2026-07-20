@@ -195,6 +195,13 @@ body {
     font-size: 2.5rem;
     border: 3px solid var(--gold);
     background: var(--light-green);
+    overflow: hidden;
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .team-card h5 {
@@ -441,7 +448,9 @@ body {
         <div class="row g-4">
             <div class="col-sm-6 col-lg-3">
                 <div class="team-card">
-                    <div class="team-avatar">👨‍💼</div>
+                    <div class="team-avatar">
+                        <img src="{{ asset('image/ajay.jpeg') }}" alt="Ajay Saw">
+                    </div>
                     <h5>Ajay Saw</h5>
                     <div class="role">Team Lead & Backend Developer</div>
                     <p> Project ki planning, database design aur PHP/Laravel backend logic ki zimmedari
@@ -454,7 +463,9 @@ body {
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="team-card">
-                    <div class="team-avatar">👨‍💻</div>
+                    <div class="team-avatar">
+                        <img src="{{ asset('image/anuj.jpg') }}" alt="Anuj Prasad">
+                    </div>
                     <h5>Anuj Prasad</h5>
                     <div class="role">Full Stack Developer</div>
                     <p>Website ka core development, database structuring aur crop data management is
@@ -467,7 +478,9 @@ body {
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="team-card">
-                    <div class="team-avatar">👩‍🌾</div>
+                    <div class="team-avatar">
+                        <img src="{{ asset('image/jyoti.jpg') }}" alt="Jyoti Kumari">
+                    </div>
                     <h5>Jyoti Kumari</h5>
                     <div class="role">Content & Research Lead</div>
                     <p> Kisano ki zarooraton ko samajhkar crop data, seasonal jankari aur content
@@ -480,7 +493,9 @@ body {
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="team-card">
-                    <div class="team-avatar">👩‍💻</div>
+                    <div class="team-avatar">
+                        <img src="{{ asset('image/riya.jpg') }}" alt="Riya Kumari">
+                    </div>
                     <h5>Riya Kumari</h5>
                     <div class="role">UI/UX & Frontend Developer</div>
                     <p> Website ka design, user interface aur user-friendly experience banane ka kaam
